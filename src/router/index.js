@@ -3,17 +3,18 @@ import Router from 'vue-router'
 const AppContainer = () =>
   import ('../container/AppContainer.vue')
 
-const HomePage = () =>
-  import ('../components/Home.vue')
+const MainPage = () =>
+  import ('../components/Main.vue')
 
 let routes = [{
   path: '/',
+  redirect: '/main',
   name: '',
   component: AppContainer,
   children: [{
-    path: 'home',
-    name: 'Home',
-    component: HomePage,
+    path: 'main',
+    name: 'Main',
+    component: MainPage,
   }]
 }]
 

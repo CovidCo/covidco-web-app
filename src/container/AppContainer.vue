@@ -6,11 +6,13 @@
         <router-view></router-view>
       </div>
     </div>
+    <AppFooter/>
   </div>
 </template>
 
 <script>
 import AppHeader from './AppHeader.vue'
+import AppFooter from './AppFooter.vue'
 
 export default {
     name: 'AppContainer',
@@ -19,7 +21,8 @@ export default {
         }
     },
     components: {
-      AppHeader
+      AppHeader,
+      AppFooter
     }
 }
 </script>
