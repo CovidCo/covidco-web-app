@@ -6,6 +6,15 @@ const AppContainer = () =>
 const MainPage = () =>
   import ('../components/Main.vue')
 
+const RecommendationsPage = () =>
+  import ('../components/pages/Recommendations.vue')
+
+const SymptomsPage = () =>
+  import ('../components/pages/Symptoms.vue')
+
+  const InitialDiagnosis = () =>
+    import ('../components/diagnosis/Initial.vue')
+
 let routes = [{
   path: '/',
   redirect: '/main',
@@ -14,7 +23,19 @@ let routes = [{
   children: [{
     path: 'main',
     name: 'Main',
-    component: MainPage,
+    component: MainPage
+  }, {
+    path: 'recommendations',
+    name: 'Recommendations',
+    component: RecommendationsPage
+  }, {
+    path: 'symptoms',
+    name: 'Symptoms',
+    component: SymptomsPage
+  }, {
+    path: 'initial_diagnosis',
+    name: 'InitialDiagnosis',
+    component: InitialDiagnosis
   }]
 }]
 

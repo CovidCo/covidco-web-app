@@ -1,13 +1,12 @@
 <template>
     <b-navbar toggleable="lg" variant="light">
-      <b-navbar-brand href="#"><strong>Covid-Co</strong></b-navbar-brand>
+      <b-navbar-brand to="main"><strong>Covid-Co</strong></b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
-        <!--
+
         <b-navbar-nav>
-          <b-nav-item href="#">Sobre el proyecto </b-nav-item>
+          <b-nav-item to="main"> Inicio </b-nav-item>
         </b-navbar-nav>
-        -->
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-item href="#">Sobre el proyecto </b-nav-item>

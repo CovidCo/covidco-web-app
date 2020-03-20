@@ -1,7 +1,7 @@
 <template>
   <footer class="fixed-bottom bg-light">
     <div class="container-fluid">
-      <strong class="contact-text">Contact us to contribute: info@deelab.co</strong>
+      <p class="contact-text">Contact us and contribute: info@deelab.co</p>
     </div>
   </footer>
 </template>
