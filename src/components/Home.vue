@@ -24,8 +24,47 @@
                     </nav>
                 </b-row>
                 <b-row>
-                    <h1>Home</h1>
-                </b-row> 
+                    <b-col class="header" sm="12" md="12">
+                        <h1>¿Crees tener covid-19 y estás en Popayán?</h1>
+                    </b-col>                                     
+                </b-row>   
+
+                <!-- Informatio cards-->
+                <b-row>
+                    <b-col sm="12" md="4">
+                        <div class="card">
+                            <img src="../assets/old-man.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h2 class="card-title">Tienes mas de 60 años</h2>
+                                <p class="card-text">Evita el contacto con quienes presenten síntomas respiratorios o estén diagnosticados con alguna infección respiratoria</p>
+                                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                            </div>
+                        </div>  
+                    </b-col>
+                    <b-col sm="12" md="4">
+                        <div class="card">
+                            <img src="../assets/hands-wash.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h2 class="card-title">Lavado de manos</h2>
+                                <p class="card-text">Lávese frecuentemente las manos con agua y jabón antes y después de ingerir alimentos, toser o estornudar y utilizar el baño.</p>
+                                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                            </div>
+                        </div>  
+                    </b-col>
+                    <b-col sm="12" md="4">
+                        <div class="card">
+                            <img src="../assets/face-mask.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h2 class="card-title">¿Tienes sintomas de resfrio?</h2>
+                                <p class="card-text">Cúbrete la boca y nariz con la parte interna del codo <br>
+                                    Evita saludar de beso o dar la mano
+                                </p>
+                                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                            </div>
+                        </div>  
+                    </b-col>                                      
+                </b-row>
+                <!-- Informatio cards-->
             </b-col>
         </section>        
     </div>            
@@ -63,6 +102,11 @@ export default {
 /* Navbar links on mouse-over */
 .navbar a:hover {
   background-color: #ced2d8;
+}
+
+.header{
+    text-align: center;    
+    
 }
 
 /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
