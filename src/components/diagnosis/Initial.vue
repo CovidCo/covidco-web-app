@@ -175,15 +175,8 @@
 export default {
   name: 'InitialDiagnosis',
   data(){
-    return{
-      myModal: false,
-      largeModal: false,
-      smallModal: false,
-      primaryModal: false,
-      successModal: false,
-      warningModal: false,
-      dangerModal: false,
-      infoModal: false
+    return{      
+      largeModal: false,     
     }
   }
 }
