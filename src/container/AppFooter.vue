@@ -1,8 +1,6 @@
 <template>
-  <footer class="fixed-bottom bg-light">
-    <div class="container-fluid">
-      <p class="contact-text">Contact us and contribute: info@deelab.co</p>
-    </div>
+  <footer class="bg-light footer-container">
+    <p class="contact-text">Contact us and contribute: info@deelab.co</p>
   </footer>
 </template>
 
@@ -18,17 +16,16 @@ export default {
 </script>
 
 <style>
-  footer {
-    position: fixed;
-    height: 70px;
-    bottom: 0;
-    width: 100%;
+
+  .footer-container{
+    flex: 0 0 0 50px;
+    padding: 0.1rem;
+    display: flex;
   }
 
   .contact-text{
-    margin-top: 5px;
-    float: right;
     padding: 1rem;
+    font-weight: 600;
   }
 
 </style>
