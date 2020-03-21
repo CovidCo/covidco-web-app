@@ -1,8 +1,8 @@
 <template>
     <div>
       <b-container>
-        <h3>La salud de todos también está en tus manos</h3>
-        <h3>Cuidándonos le ganamos al Corona Virus</h3>
+        <h1>La salud de todos también está en tus manos</h1>
+        <p>Cuidándonos le ganamos al Corona Virus</p>
         <br>
         <section>
           <div>
