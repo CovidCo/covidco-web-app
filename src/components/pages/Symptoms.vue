@@ -1,61 +1,71 @@
 <template>
   <b-container>
     <h1>Síntomas</h1>
-        <b-row>
-            <b-col sm="6" md="4">
-                <div class="card w-75">
-                    <img src="../../assets/img/fever.png" class="card-img-top" alt="..." height="180">
-                    <div class="card-body">
-                        <!-- <h5 class="card-title">Fiebre</h5> -->
-                        <p class="card-text">Fiebre</p>
-                    </div>
-                </div>
-            </b-col>
-            <b-col sm="6" md="4" offset-md="4">
-                <div class="card w-75">
-                    <img src="../../assets/img/cough.png" class="card-img-top" alt="..." height="180">
-                    <div class="card-body">
-                        <p class="card-text">Tos seca</p>
-                    </div>
-                </div>
-            </b-col>
-        </b-row>
-        <b-row>
-          <b-col sm="6" md="4">
-              <div class="card w-75">
-                  <img src="../../assets/img/sore-throat.png" class="card-img-top" alt="..." height="180">
-                  <div class="card-body">
-                     <p class="card-text">Dolor de garganta</p>
-                  </div>
+        <div class="row">
+          <div class="col-6 col-md-6 offset-md-4">
+            <div class="card">
+              <img src="../../assets/img/fever.png" class="card-img-top" alt="...">
+              <div class="card-body">                       
+                  <p class="card-text">Fiebre</p>
               </div>
-          </b-col>
-          <b-col sm="6" md="4" offset-md="4">
-              <div class="card w-75">
-                  <img src="../../assets/img/breath.png" class="card-img-top" alt="..." height="180">
-                  <div class="card-body">
-                      <p class="card-text">Dificultad para respirar</p>
-                  </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-6 offset-md-4">
+            <div class="card">
+              <img src="../../assets/img/cough.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <p class="card-text">Tos seca</p>
               </div>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col sm="6" md="4">
-              <div class="card w-75">
-                  <img src="../../assets/img/tired.png" class="card-img-top" alt="..." height="180">
-                  <div class="card-body">
-                      <p class="card-text">Cansancio o malestar</p>
-                  </div>
+            </div>
+          </div>
+        </div>
+       
+        <div class="row">
+          <div class="col-6 col-md-6 offset-md-4">
+            <div class="card">
+              <img src="../../assets/img/sore-throat.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <p class="card-text">Dolor de garganta</p>
               </div>
-          </b-col>
-          <b-col sm="6" md="4" offset-md="4">
-              <div class="card w-75">
-                  <img src="../../assets/img/diarrhea.png" class="card-img-top" alt="..." height="180">
+            </div>
+          </div>
+          <div class="col-6 col-md-6 offset-md-4">
+            <div class="card">
+              <img src="../../assets/img/breath.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <p class="card-text">Dificultad para respirar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-6 col-md-6 offset-md-4">
+            <div class="card">
+              <img src="../../assets/img/tired.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <p class="card-text">Cansancio o malestar</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-6 offset-md-4">
+            <div class="card">
+              <img src="../../assets/img/breath.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <p class="card-text">Dificultad para respirar</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-6 col-md-6 offset-md-4">
+            <div class="card">
+                  <img src="../../assets/img/diarrhea.png" class="card-img-top" alt="...">
                   <div class="card-body">
                       <p class="card-text">Diarrea</p>
                   </div>
-              </div>
-          </b-col>
-      </b-row>
+            </div>
+          </div>
+        </div>      
   </b-container>
 </template>
 <script>
@@ -76,7 +86,7 @@ export default {
   .main-page{
     margin-top: 1rem;
   }
-   .card-img-top{
+  .card-img-top{
     padding: 1rem 4rem;
     height:14rem;
     /* width: 18rem; */
