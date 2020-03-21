@@ -6,14 +6,17 @@ const AppContainer = () =>
 const MainPage = () =>
   import ('../components/Main.vue')
 
+const TermsAndConditions = () =>
+  import ('../components/pages/TermsAndConditions.vue')
+
 const RecommendationsPage = () =>
   import ('../components/pages/Recommendations.vue')
 
 const SymptomsPage = () =>
   import ('../components/pages/Symptoms.vue')
 
-  const InitialDiagnosis = () =>
-    import ('../components/diagnosis/Initial.vue')
+const InitialDiagnosis = () =>
+  import ('../components/diagnosis/Initial.vue')
 
 let routes = [{
   path: '/',
@@ -36,6 +39,10 @@ let routes = [{
     path: 'initial_diagnosis',
     name: 'InitialDiagnosis',
     component: InitialDiagnosis
+  }, {
+    path: 'terms',
+    name: 'TermsAndConditions',
+    component: TermsAndConditions
   }]
 }]
 
