@@ -111,8 +111,8 @@ export default {
     margin-top: 1rem;
   }
   .card-img-top{
-    /* padding: 30px 70px; */
-    padding: 1rem 3rem 0 3rem;
+    
+    padding: 1rem 2rem 0 2rem;
     height:6rem;
     width: 10rem;
     margin-right: auto;
@@ -135,9 +135,9 @@ export default {
       font-size: 0.8rem;
     }
     .card-img-top{    
-    padding: 0.2rem 0rem 0.2rem 0rem;
-    height:7rem;
-    width: 7rem;
+    padding: 2rem 0rem 2rem 0rem;
+    height:6rem;
+    width: 6rem;
     margin-right: auto;
     margin-left: auto;
     display: block    
@@ -171,9 +171,9 @@ export default {
       font-size: 0.8rem;
     }
     .card-img-top{    
-    padding: 0.2rem 0rem 0.2rem 0rem;
+    padding: 2rem 0rem 2rem 0rem;
     height:5rem;
-    width: 5rem;
+    width: 50%;
     margin-right: auto;
     margin-left: auto;
     display: block    
