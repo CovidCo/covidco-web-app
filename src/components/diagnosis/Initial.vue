@@ -1,9 +1,26 @@
 <template>
-  <div class="container">    
+  <div class="container panel">  
+    <div class="wrapper">             
+      <b-modal  title="Términos y condiciones" 
+                size="lg" 
+                v-model="largeModal" 
+                @ok="largeModal = false" 
+                variant="primary" 
+                header-bg-variant="primary" 
+                content-class="border-primary">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </b-modal>
+    </div>  
+
     <section>
       
       <h1>¿No se siente bien?</h1>
-      <p>Determine  si usted es un posible caso SOSPECHOSO  de coronavirus.</p>
+      <p>Al llenar este formulario, podrá determinar si usted es un posible caso SOSPECHOSO de coronavirus.</p>
       
       <b-row>
         <b-col sm="12" md="6" lg="5">
@@ -139,12 +156,13 @@
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="gridCheck">
             <label class="form-check-label" for="gridCheck">
-              <a href="">Aceptar términos y condiciones</a>
+              <!-- <a href="">Aceptar términos y condiciones</a> -->
+              <button type="submit" class="btn btn-link" @click="largeModal = true">Términos y condiciones</button>
             </label>
           </div>          
         </b-col> 
         <b-col sm="6" md="4" lg="4">
-          <button type="submit" class="btn btn-primary">Registrar información</button>
+          <button type="submit" class="btn btn-primary" @click="largeModal = true">Registrar información</button>
         </b-col>                     
       </b-row>      
     </section>
@@ -155,15 +173,25 @@
 <script>
 
 export default {
-    name: 'InitialDiagnosis',
-    data(){
-        return{
-        }
+  name: 'InitialDiagnosis',
+  data(){
+    return{
+      myModal: false,
+      largeModal: false,
+      smallModal: false,
+      primaryModal: false,
+      successModal: false,
+      warningModal: false,
+      dangerModal: false,
+      infoModal: false
     }
+  }
 }
 
 </script>
 
 <style>
-
+.panel{
+  background-color: #ebedef;
+}
 </style>
