@@ -112,16 +112,20 @@ export default {
   }
   .card-img-top{
     
-    padding: 1rem 2rem 0 2rem;
+    padding: 0.5rem 5rem;
     height:6rem;
-    width: 10rem;
-    margin-right: auto;
+    /* width: 10rem; */
+    /* margin-right: auto;
     margin-left: auto;
-    display: block
+    display: block */
     
   }
   .card-body{
       text-align: center
+  }
+  .card-deck{
+    margin: 0 auto;
+    display: block;
   }
 
   @media (max-width: 1366px) {
