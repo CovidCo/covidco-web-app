@@ -2,70 +2,55 @@
   <b-container>
     <h1>Síntomas</h1>
         <div class="row">
-          <div class="col-6 col-md-6 offset-md-4">
-            <div class="card">
+          <div class="col-6 col-md-3 col-lg-3">
+            <div class="card card-margin">
               <img src="../../assets/img/fever.png" class="card-img-top" alt="...">
               <div class="card-body">                       
                   <p class="card-text">Fiebre</p>
               </div>
             </div>
           </div>
-          <div class="col-6 col-md-6 offset-md-4">
-            <div class="card">
+          <div class="col-6 col-md-3 offset-md-1 col-lg-3 offset-lg-1" >
+            <div class="card card-margin">
               <img src="../../assets/img/cough.png" class="card-img-top" alt="...">
               <div class="card-body">
                   <p class="card-text">Tos seca</p>
               </div>
             </div>
           </div>
-        </div>
-       
-        <div class="row">
-          <div class="col-6 col-md-6 offset-md-4">
-            <div class="card">
+          <div class="col-6 col-md-3 offset-md-1 col-lg-3 offset-lg-1">
+            <div class="card card-margin">
               <img src="../../assets/img/sore-throat.png" class="card-img-top" alt="...">
               <div class="card-body">
                   <p class="card-text">Dolor de garganta</p>
               </div>
             </div>
           </div>
-          <div class="col-6 col-md-6 offset-md-4">
-            <div class="card">
-              <img src="../../assets/img/breath.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                  <p class="card-text">Dificultad para respirar</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-6 col-md-6 offset-md-4">
-            <div class="card">
+          <div class="col-6 col-md-3  col-lg-3">
+            <div class="card card-margin">
               <img src="../../assets/img/tired.png" class="card-img-top" alt="...">
               <div class="card-body">
                   <p class="card-text">Cansancio o malestar</p>
               </div>
             </div>
           </div>
-          <div class="col-6 col-md-6 offset-md-4">
-            <div class="card">
+          <div class="col-6 col-md-3 offset-md-1 col-lg-3 offset-lg-1">
+            <div class="card card-margin">
               <img src="../../assets/img/breath.png" class="card-img-top" alt="...">
               <div class="card-body">
                   <p class="card-text">Dificultad para respirar</p>
               </div>
             </div>
           </div>
-          
-          <div class="col-6 col-md-6 offset-md-4">
-            <div class="card">
-                  <img src="../../assets/img/diarrhea.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                      <p class="card-text">Diarrea</p>
-                  </div>
+          <div class="col-6 col-md-3 offset-md-1 col-lg-3 offset-lg-1">
+            <div class="card card-margin">
+                <img src="../../assets/img/diarrhea.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Diarrea</p>
+                </div>
             </div>
           </div>
-        </div>      
+        </div>
   </b-container>
 </template>
 <script>
@@ -87,10 +72,9 @@ export default {
     margin-top: 1rem;
   }
   .card-img-top{
-    padding: 1rem 4rem;
-    height:14rem;
+    padding: 1rem 6rem;
+    height:7rem;
     /* width: 18rem; */
-
   }
   .card-body{
     padding: 0.4rem 0.2rem;
@@ -100,6 +84,13 @@ export default {
     margin: 0 auto;
     display: block;
   }
+  .card-margin{
+    margin-bottom: 1rem;
+  }
+ 
+
+   
+
     @media (max-width: 1024px) {
     
     .navbar-brand{
@@ -107,12 +98,8 @@ export default {
     }
     
     .card-img-top{
-      padding: 0.2rem 0rem 0.2rem 0rem;
-      height:5rem;
-      width: 5rem;
-      margin-right: auto;
-      margin-left: auto;
-      display: block
+      padding: 0.2rem 5rem;
+      height:3.3rem;     
     }
 
     .card-body{
@@ -143,18 +130,22 @@ export default {
     }
   }
 
+  @media(max-width: 991px){
+    .card-img-top{
+      padding: 0.2rem 3rem;
+      height:3rem;     
+    }
+  }
+ 
+
   @media (max-width: 480px) {
     .navbar-brand{
       font-size: 0.8rem;
     }
 
     .card-img-top{
-      padding: 0.3rem;
-      /* height:6rem;
-      width: 6rem; */
-      margin-right: auto;
-      margin-left: auto;
-      display: block
+      padding: 0.2rem 1.3rem;
+      height:3rem;
     }
 
     .card-body{
@@ -194,6 +185,13 @@ export default {
 
     h4{
       font-size: 0.7rem
+    }
+  }
+
+  @media (max-width: 420px){
+    .card-img-top{
+      padding: 0.2rem 3.3rem;
+      height:3rem;     
     }
   }
 
