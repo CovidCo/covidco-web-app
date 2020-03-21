@@ -126,7 +126,7 @@ export default {
 
   }
   .card-body{
-      padding: 0.4rem;
+      padding: 0.4rem 0.2rem;
       text-align: center;
   }
   .card-deck{

@@ -85,8 +85,8 @@ export default {
 
   }
   .card-body{
-      /* padding: 0.4rem; */
-      text-align: center;
+    padding: 0.4rem 0.2rem;
+    text-align: center;
   }
   .card-deck{
     margin: 0 auto;
@@ -115,7 +115,7 @@ export default {
       text-align: center;
     }
     p.card-text{
-      font-size: 0.9rem
+      font-size: 0.9rem;      
     }
     p.contact-text{
       font-size: 0.9rem
