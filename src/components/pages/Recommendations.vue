@@ -41,7 +41,7 @@
                         <div class="card w-75">
                             <img src="../../assets/img/hand-wash.png" class="card-img-top" alt="...">                           
                             <div class="card-body">
-                                <p class="card-text">Lavar tus manos cada 3 horas</p>
+                                <p class="card-text">Lavar tus manos <strong>cada 3 horas</strong> </p>
                             </div>
                         </div>
                     </b-col>
@@ -49,7 +49,7 @@
                         <div class="card w-75">
                             <img src="../../assets/img/mask.png" class="card-img-top" alt="...">                           
                             <div class="card-body">
-                               <p class="card-text">Si tienes síntomas de gripe usa tapabocas NO la mano</p>
+                               <p class="card-text">Si tienes síntomas de gripe usa tapabocas <strong>NO la mano</strong>  </p>
                             </div>
                         </div>
                     </b-col>
