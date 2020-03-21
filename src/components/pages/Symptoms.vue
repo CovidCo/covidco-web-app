@@ -28,6 +28,9 @@
                             </div>
                         </div>
                     </b-col>
+        </b-row>
+        <br>
+        <b-row>
                     <b-col sm="6" md="4">
                         <div class="card w-75">
                             <img src="../../assets/img/breath.png" class="card-img-top" alt="..." height="180">
