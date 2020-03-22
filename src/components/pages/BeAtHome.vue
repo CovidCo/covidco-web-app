@@ -5,7 +5,7 @@
     <div class="container-fluid main-page">
         <b-row>
             <b-col sm="12" md="6" lg="6">
-                <h5>¡Todos en casa para ayudar a combatir COVID-19!</h5>
+                <h5>¡Todos en casa para ayudar a combatir el COVID-19!</h5>
                 <p>Mostramos cuántos de nosotros ya estamos en casa.</p>
                 <p>El propósito de esta página es ayudar a crear conciencia sobre este tema tan importante en este momento.</p>
                 <br>
@@ -15,6 +15,22 @@
                         <p>Personas en casa</p>
                     </div>
                 </div>
+                <div class="social">
+                    <div class="links">
+                      <vue-goodshare-facebook
+                        page_url="https://covid19co.org/beathome"
+                        title_social="Facebook"
+                        has_counter
+                        has_icon
+                        class="social-share"></vue-goodshare-facebook>
+                      <vue-goodshare-whatsapp
+                        page_url="hola yo tambien estoy en casa, conoce mas en https://covid19co.org/beathome"
+                        title_social="Whatsapp"
+                        has_counter
+                        has_icon
+                        class="social-share"></vue-goodshare-whatsapp>
+                    </div>
+                </div> 
             </b-col>
 
             <b-col sm="12" md="6" lg="6">
@@ -91,6 +107,8 @@
 
 <script>
 import VueGoogleAutocomplete from 'vue-google-autocomplete'
+import VueGoodshareFacebook from "vue-goodshare/src/providers/Facebook.vue";
+import VueGoodshareWhatsapp from "vue-goodshare/src/providers/WhatsApp.vue";
 // import Graph from '../charts/Line.vue'
 import moment from 'moment'
 moment.locale('es')
@@ -101,7 +119,9 @@ export default {
     
     name: 'BeAtHome',
     components:{
-        VueGoogleAutocomplete
+        VueGoogleAutocomplete, 
+        VueGoodshareFacebook, 
+        VueGoodshareWhatsapp
     }, 
     data(){
         return{
@@ -183,10 +203,8 @@ export default {
     }
     .graph-title{
         text-align: center
+    } 
+    .social{
+      text-align: center; 
     }
-
-
-  
-
-  
 </style>
