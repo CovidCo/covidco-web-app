@@ -35,16 +35,7 @@
                 <p class="card-text">Lavar tus manos <strong>cada 3 horas</strong> </p>
             </div>
           </div>
-        </div>
-
-        <div class="col-6 col-md-3 offset-md-1 col-lg-3 offset-lg-1 card-margin" >        
-            <div class="card card-margin">
-                <img src="../../assets/img/hand-wash.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Lavar tus manos <strong>cada 3 horas</strong> </p>
-                </div>
-            </div>        
-        </div>
+        </div>    
 
         <div class="col-6 col-md-3 offset-md-1 col-lg-3 offset-lg-1 card-margin" >        
           <div class="card card-margin">
@@ -112,19 +103,20 @@ export default {
 </script>
 
 <style scoped>
-  .main-page{
+.main-page{
     margin-top: 1rem;
   }
   .card{
-   height: 100%;
+    height: 100%;
   }
   .card-img-top{
-    padding: 0.4rem 5.5rem;
-    height:10rem;    
+    padding: 1rem 6rem;
+    height:6rem;
+    /* width: 18rem; */
   }
   .card-body{
-      padding: 0.4rem 0.2rem;
-      text-align: center;
+    padding: 0.4rem 0.2rem;
+    text-align: center;
   }
   .card-deck{
     margin: 0 auto;
@@ -133,21 +125,24 @@ export default {
   .card-margin{
     margin-bottom: 1rem;
   }
+ 
+   
+    @media (max-width: 1024px) {
     
-  @media (max-width: 1024px) {
     .navbar-brand{
       font-size: 0.8rem;
     }
+    
     .card-img-top{
-      padding: 0.2rem 0rem;
-      height:4rem;     
+      padding: 0.2rem 4.5rem;
+      height:3.3rem;     
     }
     .card-body{
       padding: 0.4rem;
       text-align: center;
     }
     p.card-text{
-      font-size: 0.9rem
+      font-size: 0.9rem;
     }
     p.contact-text{
       font-size: 0.9rem
@@ -169,24 +164,28 @@ export default {
       font-size: 1.0rem
     }
   }
-
+  @media(max-width: 991px){
+    .card-img-top{
+      padding: 0.2rem 3rem;
+      height:3rem;     
+    }
+  }
+ 
   @media (max-width: 480px) {
-    
     .navbar-brand{
       font-size: 0.8rem;
     }
-    
     .card-img-top{
-      padding: 0.2rem 0rem 0.2rem 0rem;
-      height:6rem;
-      width: 6rem;
-      margin-right: auto;
-      margin-left: auto;
-      display: block
+      padding: 0.2rem 1.3rem;
+      height:3rem;
     }
     .card-body{
       padding: 0.1rem;
       text-align: center;
+    }
+    .card-deck{
+      margin: 0 auto;
+      display: block;
     }
     p.card-text{
       font-size: 0.6rem
@@ -211,7 +210,12 @@ export default {
       font-size: 0.7rem
     }
   }
-
+  @media (max-width: 420px){
+    .card-img-top{
+      padding: 0.2rem 3rem;
+      height:3rem;     
+    }
+  }
   @media (max-width: 320px) {
     .card-img-top{
       padding: 0.2rem;
