@@ -18,32 +18,43 @@ const SymptomsPage = () =>
 const InitialDiagnosis = () =>
   import ('../components/diagnosis/Initial.vue')
 
+const BeAtHome = () => 
+  import ('../components/pages/BeAtHome.vue')
+
+
 let routes = [{
   path: '/',
   redirect: '/main',
   name: '',
   component: AppContainer,
-  children: [{
+  children: [
+    {
     path: 'main',
     name: 'Main',
     component: MainPage
-  }, {
-    path: 'recommendations',
-    name: 'Recommendations',
-    component: RecommendationsPage
-  }, {
-    path: 'symptoms',
-    name: 'Symptoms',
-    component: SymptomsPage
-  }, {
-    path: 'initial_diagnosis',
-    name: 'InitialDiagnosis',
-    component: InitialDiagnosis
-  }, {
-    path: 'terms',
-    name: 'TermsAndConditions',
-    component: TermsAndConditions
-  }]
+    }, {
+      path: 'recommendations',
+      name: 'Recommendations',
+      component: RecommendationsPage
+    }, {
+      path: 'symptoms',
+      name: 'Symptoms',
+      component: SymptomsPage
+    }, {
+      path: 'initial_diagnosis',
+      name: 'InitialDiagnosis',
+      component: InitialDiagnosis
+    }, {
+      path: 'terms',
+      name: 'TermsAndConditions',
+      component: TermsAndConditions
+    }, {
+      path: 'beathome',
+      name: 'BeAtHome',
+      component: BeAtHome
+    },
+
+  ]
 }]
 
 let router = new Router({

@@ -185,7 +185,6 @@ const phoneNumber = (number) => {
      return false;
    }
 }
-
 export default {
   name: 'InitialDiagnosis',
   data(){
@@ -281,15 +280,12 @@ export default {
     },
   }
 }
-
 </script>
 
 <style>
-
   .title{ 
     padding: 1rem; 
   }
-
   .panel{
     background-color: #ebedef;
   }
@@ -298,14 +294,12 @@ export default {
     padding: 1rem; 
     margin: 1rem;
   }
-
   .submit-button{
     margin: auto; 
     display: block; 
   }
-
   .invalid-feedback-radios{
     display: block; 
   }
-
 </style>
+
