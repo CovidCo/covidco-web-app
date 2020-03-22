@@ -8,40 +8,35 @@
           <div>
             <div class="card-deck">
               <b-row>
-                <b-col sm="6" md="4">
-                    <div class="card">
-                      <img class="card-img-top" src="../assets/img/cough.png" alt="Card image cap">
-                      <div class="card-body">
-                        <b-button variant="primary" @click.prevent="visitPage('symptoms')"> Cuáles son los síntomas </b-button>
-                      </div>
-                    </div>
-                </b-col>
-                <b-col sm="6" md="4" offset-md="4">
-                  <div class="card">
+
+                <div class="col-12 col-md-3  offset-md-1 col-lg-3 card-margin">        
+                  <button class="btn btn-primary btn-width" @click.prevent="visitPage('beathome')">
+                    <img class="card-img-top" src="../assets/img/medal-color.png" alt="Card image cap">
+                    <p>¡Yo ya estoy en casa!</p>                        
+                  </button>
+                </div> 
+
+                <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
+                  <button class="btn btn-primary btn-width" @click.prevent="visitPage('recommendations')">
                     <img class="card-img-top" src="../assets/img/hand-wash.png" alt="Card image cap">
-                    <div class="card-body">
-                      <b-button variant="primary" @click.prevent="visitPage('recommendations')"> Recomendaciones para prevenir </b-button>
-                    </div>
-                  </div>
-                </b-col>
+                    <p>Recomendaciones para prevenir contagio.</p>                        
+                  </button>
+                </div> 
+                
+                <div class="col-12 col-md-3  offset-md-1 col-lg-3 card-margin">        
+                  <button class="btn btn-primary btn-width" @click.prevent="visitPage('symptoms')">
+                    <img class="card-img-top" src="../assets/img/cough.png" alt="Card image cap">
+                    <p>Cuáles son los síntomas.</p>                        
+                  </button>
+                </div>                                
               </b-row>
               <b-row>
-                <b-col sm="6" md="4">
-                  <div class="card">
-                    <img class="card-img-top" src="../assets/img/fever.png" alt="Card image cap">
-                    <div class="card-body">
-                      <b-button variant="warning" @click.prevent="visitPage('diagnosis')"> No me siento bien </b-button>
-                    </div>
-                  </div>
-                </b-col>
-                <b-col sm="6" md="4" offset-md="4">
-                  <div class="card">
-                    <img class="card-img-top" src="../assets/img/hand-wash.png" alt="Card image cap">
-                    <div class="card-body">
-                      <b-button variant="primary" @click.prevent="visitPage('beathome')"> ¡Estamos en casa! </b-button>
-                    </div>
-                  </div>
-                </b-col>
+                <div class="col-12 col-md-3  offset-md-1 col-lg-6 offset-lg-3 card-margin">        
+                  <button class="btn btn-warning btn-width" @click.prevent="visitPage('diagnosis')">
+                    <img class="card-img-top-lg12" src="../assets/img/fever.png" alt="Card image cap">
+                    <p> <strong>¡NO ME SIENTO BIEN!. AYUDA MÉDICA</strong>  </p>                        
+                  </button>
+                </div>  
               </b-row>
             </div>
           </div>
@@ -81,10 +76,12 @@ export default {
     margin-top: 1rem;
   }
    .card-img-top{
-    padding: 1rem 4rem;
-    height:14rem;
-    /* width: 18rem; */
-
+    padding: 1rem 3rem;
+    height:11rem;  
+  }
+   .card-img-top-lg12{
+    padding: 1rem 3rem;
+    height:10rem;  
   }
   .card-body{
       padding: 0.4rem 0.2rem;
@@ -93,6 +90,14 @@ export default {
   .card-deck{
     margin: 0 auto;
     display: block;
+  }
+  .card-margin{
+    margin-bottom: 1rem;    
+    text-align: center
+  }
+  .btn-width{
+    width: 100%;
+    height: 100%;
   }
   
   @media (max-width: 1024px) {
