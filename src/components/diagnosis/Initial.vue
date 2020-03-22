@@ -67,42 +67,77 @@
               <div class="card-body">
                   <div class="form-group">
                     <label for="name"> <small id="nameHelp" class="form-text text-muted">Nombres y apellidos</small></label>
-                    <input type="text" class="form-control" id="name" placeholder="Nombres y apellidos" v-model="name">
+                    <input type="text" id="name" placeholder="Nombres y apellidos" v-model.trim="$v.name.$model"
+                      :class=" {'is-invalid': $v.name.$error,'is-valid': !$v.name.$invalid}" class="form-control">
+                    <b-form-invalid-feedback v-if="!$v.name.required">
+                      Tu nombre es necesario 
+                    </b-form-invalid-feedback>
                   </div>
                   <b-row>
                     <b-col sm="4" md="4" lg="6">
                       <div class="form-group">
-                        <label for="phone"><small id="emailHelp" class="form-text text-muted">Celular</small></label>
-                        <input type="Number" class="form-control" id="phone" placeholder="Celular" v-model="phone_number">
+                        <label for="phone"><small id="phoneNumber" class="form-text text-muted">Celular</small></label>
+                        <input type="Number" class="form-control" id="phone" placeholder="Celular" v-model.trim="$v.phone_number.$model"
+                          :class=" {'is-invalid': $v.phone_number.$error,'is-valid': !$v.phone_number.$invalid}">
+                        <b-form-invalid-feedback v-if="!$v.phone_number.required">
+                          Tu número de teléfono es necesario 
+                        </b-form-invalid-feedback>
+                        <b-form-invalid-feedback v-if="!$v.phone_number.phoneNumber">
+                          Tu número de teléfono no es valido
+                        </b-form-invalid-feedback>
                       </div>
                     </b-col>
                     <b-col sm="4" md="4" lg="3">
                       <div class="form-group">
                         <label for="age"> <small id="emailHelp" class="form-text text-muted">Edad</small></label>
-                        <input type="Number" class="form-control" id="age" placeholder="Edad" v-model="age">
+                        <input type="Number" class="form-control" id="age" placeholder="Edad" v-model.trim="$v.age.$model"
+                          :class=" {'is-invalid': $v.age.$error,'is-valid': !$v.age.$invalid}">
+                        <b-form-invalid-feedback v-if="!$v.age.required">
+                          Tu edad es necesaria
+                        </b-form-invalid-feedback>
+                        <b-form-invalid-feedback v-if="!$v.age.between">
+                          Parece que tu edad no esta bien 
+                        </b-form-invalid-feedback>
                       </div>
                     </b-col>
-                    <b-col>
+                    <b-col sm="4" md="4" lg="3">
                       <small class="form-text text-muted">Sexo</small>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="female" value="woman" v-model="gender" checked>
-                        <label class="form-check-label" for="female">
-                          Mujer
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="male" value="man" v-model="gender">
-                        <label class="form-check-label" for="male">
-                          Hombre
-                        </label>
+                      <div class="form-group">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="genderRadios" id="female" value="woman" v-model.trim="$v.gender.$model">
+                          <label class="form-check-label" for="female">
+                            Mujer
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="genderRadios" id="male" value="man" v-model.trim="$v.gender.$model">
+                          <label class="form-check-label" for="male">
+                            Hombre
+                          </label>
+                        </div>
+                        <b-form-invalid-feedback v-if="!$v.gender.required" class="invalid-feedback-radios">
+                          Necesitamos saber tu genero
+                        </b-form-invalid-feedback>
                       </div>
                     </b-col>
                   </b-row>
                   <b-row>
                     <b-col sm="4" md="4" lg="6">
                       <div class="form-group">
-                        <label for="city"><small id="emailHelp" class="form-text text-muted">Ciudad</small></label>
-                        <input type="text" class="form-control" id="city" placeholder="Ciudad" v-model="city">
+                        <label for="city"><small id="nameHelp" class="form-text text-muted">Ciudad</small></label>
+
+                        <vue-google-autocomplete
+                          v-model="city"
+                          id="city"
+                          ref="city"
+                          classname="form-control {'form-control is-invalid': $v.city.$error,'form-control is-valid': !$v.city.$invalid}"
+                          placeholder="Ingresa tu ciudad"
+                          v-on:placechanged="getAddressData"
+                          types="(cities)">
+                        </vue-google-autocomplete>
+                        <b-form-invalid-feedback v-if="!$v.city.required">
+                          Tu ubicación es necesaria
+                        </b-form-invalid-feedback>
                       </div>
                     </b-col>
                     <b-col sm="4" md="4" lg="6">
@@ -118,18 +153,19 @@
         </b-row>
         <hr>
         <b-row>
-          <b-col sm="6" md="4" lg="3">
+          <b-col sm="12" md="6" lg="6">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <input class="form-check-input" type="checkbox" id="gridCheck" v-model="terms_and_conditions">
               <label class="form-check-label" for="gridCheck">
-                <a href="" target="blank">Aceptar términos y condiciones</a>
+                <a class="link" v-on:click="openInBlankPage('terms')">Para continuar debes aceptar Términos y Condiciones</a>
               </label>
             </div>
           </b-col>
         </b-row>
         <b-row class="submit-container">
             <b-col sm="12" md="12" lg="12">
-              <button type="submit" class="btn btn-primary submit-button" @click.prevent="submitForm">Registrar información</button>
+              <button type="submit" class="btn btn-primary submit-button" :disabled="!terms_and_conditions" 
+                      @click.prevent="submitForm">Registrar información</button>
             </b-col>
         </b-row> 
       </form>
@@ -138,6 +174,17 @@
 </template>
 
 <script>
+import VueGoogleAutocomplete from 'vue-google-autocomplete'
+const { required, minLength, between } = require('vuelidate/lib/validators')
+const phoneNumber = (number) => {
+    if (number){
+     // eslint-disable-next-line
+     var rePattern = new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g)
+     return number.match(rePattern)
+   } else {
+     return false;
+   }
+}
 
 export default {
   name: 'InitialDiagnosis',
@@ -153,7 +200,7 @@ export default {
       personal_contact: false,
       name: '', 
       phone_number:  null, 
-      city: '', 
+      city: null, 
       age: null,
       fever: false, 
       gender: '', 
@@ -162,40 +209,76 @@ export default {
       pain: false
     }
   }, 
+  components:{
+    VueGoogleAutocomplete
+  }, 
+  validations: {
+    name: {
+      required,
+      minLength: minLength(4)
+    },
+    age: {
+      required, 
+      between: between(20, 120)
+    }, 
+    gender: {
+      required 
+    }, 
+    phone_number: {
+      required,
+      phoneNumber
+    }, 
+    city:{
+      required
+    }
+  }, 
   methods: {
     submitForm: async function(){
-      let payload = {
-        "data": {
-          "cough": this.cough,
-          "fever": this.fever, 
-          "sore": this.sore, 
-          "breathing": this.breathing, 
-          "fatigue": this.fatigue, 
-          "diarrhea": this.diarrhea,
-          "travel": this.travel,
-          "health_worker": this.health_worker,
-          "personal_contact": this.personal_contact, 
-          "name":this.name, 
-          "phone_number": this.phone_number, 
-          "city": this.city, 
-          "age": this.age, 
-          "gender": this.gender,
-          "neighborhood": this.neighborhood, 
-          "terms_and_conditions": this.terms_and_conditions,
-          "pain": this.pain
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+            this.$noty.warning("Revisa tu solicitud")
+      } else {
+        let payload = {
+          "data": {
+            "cough": this.cough,
+            "fever": this.fever, 
+            "sore": this.sore, 
+            "breathing": this.breathing, 
+            "fatigue": this.fatigue, 
+            "diarrhea": this.diarrhea,
+            "travel": this.travel,
+            "health_worker": this.health_worker,
+            "personal_contact": this.personal_contact, 
+            "name":this.name, 
+            "phone_number": this.phone_number, 
+            "city": this.city, 
+            "age": this.age, 
+            "gender": this.gender,
+            "neighborhood": this.neighborhood, 
+            "terms_and_conditions": this.terms_and_conditions,
+            "pain": this.pain
+          }
+        }
+        let response = await this.$https.post('/cases', payload)
+        if (response.status == 200){
+          this.$noty.success("Hemos recibido tus datos, trataremos de ayudarte pronto!")
+          this.$router.push('/main')
+        } else { 
+            this.$noty.warning("No hemos podido registrar tu solicitud")
         }
       }
-      console.log(payload)
-
-      let response = await this.$https.post('/cases', payload)
-      if (response.status == 200){
-        this.$noty.success("Hemos recibido tus datos, trataremos de ayudarte proonto!")
-        this.$router.push('/main')
-      } else { 
-          this.$noty.warning("No hemos podido registrar tu solicitud")
+    },
+    openInBlankPage: function(page){
+      if(page == 'terms'){
+        let route = this.$router.resolve({path: '/terms'});
+        window.open(route.href, '_blank');
       }
-    }
-
+    }, 
+    getAddressData: function(addressData, placeResultData, id){
+        console.log(placeResultData)
+        console.log(id)
+        this.city = addressData.locality
+    },
   }
 }
 
@@ -218,6 +301,10 @@ export default {
 
   .submit-button{
     margin: auto; 
+    display: block; 
+  }
+
+  .invalid-feedback-radios{
     display: block; 
   }
 

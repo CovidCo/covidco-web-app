@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueNoty from 'vuejs-noty'
+import Vuelidate from 'vuelidate'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import firebase from 'firebase'
 
@@ -13,6 +14,7 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
 Vue.use(VueNoty)
+Vue.use(Vuelidate)
 
 var firebaseConfig = {
         apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
