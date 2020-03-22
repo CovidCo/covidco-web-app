@@ -24,21 +24,42 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
   .footer-container{
-    flex: 0 0 0 50px;
+    flex: 0 0 0 80px;
     padding: 0.1rem;
     display: flex;
   }
 
   .contact-text{
-    padding: 1rem;
-    font-weight: 600;
+    padding: 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    margin: 0;
+    display: block;
   }
 
   .terms-text{
-    padding: 1rem;
+    padding: 0.2rem;
+    font-size: 0.8rem;
   }
+
+
+@media (max-width: 320px) {
+  
+  .contact-text{
+    padding: 0.2rem;
+    font-size: 0.6rem;
+    font-weight: 800;
+    margin: 0;
+  }
+  
+  .terms-text{
+    font-size: 0.5rem;
+  }
+
+}
+
 
 </style>

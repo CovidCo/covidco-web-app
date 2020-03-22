@@ -34,6 +34,29 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.navbar{
+  padding: 0.5rem 0.5rem; 
+
+}
+
+.navbar-brand, .navbar-toggler{
+  font-size: 1rem;
+}
+
+@media (max-width: 320px) {
+
+  .navbar{
+    padding: 0.3rem 0.3rem; 
+  }
+
+  .navbar-brand, .navbar-toggler{
+    font-size: 0.8rem;
+  }
+
+
+}
+
 
 </style>
