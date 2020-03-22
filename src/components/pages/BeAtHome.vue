@@ -177,13 +177,17 @@ export default {
                         home_at:  moment(String(this.startDate)).format('DD/MM/YYYY')
                     }
                 }
-                let response = await this.$https.post('/homeReports', payload)
-                if (response.status == 200){
-                  this.$noty.success("Hemos recibido tus datos, por mas personas en casa!")
-                  this.$router.push('/main')
-                } else { 
+                try{ 
+                  let response = await this.$https.post('/homeReports', payload)
+                  if (response.status == 200){
+                    this.$noty.success("Hemos recibido tus datos, por mas personas en casa!")
+                    this.$router.push('/main')
+                  } else { 
                     this.$noty.warning("No hemos podido registrar tu información")
-                } 
+                  } 
+                } catch(e){
+                  this.$noty.warning("Parece ser que ya has registrado tus datos")
+                }
             }     
         }
     },
