@@ -5,7 +5,7 @@
       <b-modal title="Consejos" variant="info" header-bg-variant="info" content-class="border-info"
         v-model="infoModal" @ok="infoModal = false" ok-variant="info" >
         <ol type="1">
-          <li>Distanciamiento social (mantener un metro de distancia entre personas)</li>
+          <li>Distanciamiento social (mantener dos metros de distancia entre personas)</li>
           <li>Lavarse las manos frecuentemente con agua y jabón o alcohol en gel.</li>
           <li>Toser o estornudar sobre el pliegue del codo o utilizar pañuelos descartables.</li>
           <li>No llevarse las manos a la cara.</li>
@@ -19,59 +19,56 @@
     </div>
     <div class="container-fluid main-page">
       <b-row>
-        <div class="col-6 col-md-3 offset-md-1 col-lg-3 card-margin">
-          <div class="card">
+            
+        <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">
+          <button class="btn btn-warning btn-width" @click="infoModal = true">
             <img src="../../assets/img/old.png" class="card-img-top" alt="..." >
-            <div class="card-body">
-                <button type="button" class="btn btn-link mr-1" @click="infoModal = true">Si eres mayor de 60 años.</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-6 col-md-3 offset-md-1 col-lg-3 offset-lg-1 card-margin">
-          <div class="card">
+            <p>Eres mayor de 60 años. <strong>Abrir instrucciones</strong> </p>
+            
+          </button>
+        </div>   
+       
+        <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
+          <button class="btn btn-info btn-width" @click="openVideo('hands')">
             <img src="../../assets/img/hand-wash.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Lavar tus manos <strong>cada 3 horas</strong> </p>
-            </div>
-          </div>
-        </div>    
-
-        <div class="col-6 col-md-3 offset-md-1 col-lg-3 offset-lg-1 card-margin" >        
-          <div class="card card-margin">
-            <img src="../../assets/img/mask.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Si tienes síntomas de gripe usa tapabocas <strong>NO la mano</strong>  </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-6 col-md-3 offset-md-1 col-lg-3 offset-lg-1 card-margin" >        
-          <div class="card card-margin">
-            <img src="../../assets/img/cough.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Estornuda en el ángulo interno del codo.</p>
-            </div>
-          </div>
-        </div>
-      
-        <div class="col-6 col-md-3 offset-md-1 col-lg-3 offset-lg-1 card-margin" >        
-          <div class="card card-margin">
+            <p>Lavar tus manos cada 3 horas. <strong>Ver vídeo</strong></p>            
+          </button>
+        </div>  
+       
+        <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
+          <button class="btn btn-outline-primary btn-width disabled">
             <img src="../../assets/img/face.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">No te toques la cara </p>
-            </div>
-          </div>
-        </div>
-      
-        <div class="col-6 col-md-3 offset-md-1 col-lg-3 offset-lg-1 card-margin" >        
-          <div class="card card-margin">
+            <p><strong> No te toques la cara</strong> </p>                            
+          </button>
+        </div>      
+       
+        <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
+          <button class="btn btn-outline-primary btn-width disabled">
+            <img src="../../assets/img/mask.png" class="card-img-top" alt="...">
+            <p>Si tienes síntomas de gripe usa tapabocas <strong>NO la mano</strong></p>                            
+          </button>
+        </div>      
+       
+        <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
+          <button class="btn btn-outline-primary btn-width disabled">
+            <img src="../../assets/img/cough.png" class="card-img-top" alt="...">
+            <p>Estornuda en el ángulo interno del codo.</p>                            
+          </button>
+        </div>      
+       
+        <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
+          <button class="btn btn-outline-primary btn-width disabled">
             <img src="../../assets/img/cleaning-spray.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">Desinfecta tus pertenencias</p>
-            </div>
-          </div>
-        </div>
+            <p>Desinfecta tus pertenencias.</p>                            
+          </button>
+        </div>         
+      
+        <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
+          <button class="btn btn-info btn-width" @click="openVideo('vegetables')">
+            <img src="../../assets/img/hand-wash.png" class="card-img-top" alt="...">
+            <p>Desinfecta frutas. Ver video.</p>                        
+          </button>
+        </div>  
 
 
       </b-row>
@@ -92,11 +89,21 @@ export default {
           successModal: false,
           warningModal: false,
           dangerModal: false,
-          infoModal: false
+          infoModal: false,
+          urlVideoHands: 'https://www.youtube.com/watch?v=NMmAj1EKdVo&t=2s',
+          urlVideoVegetables: 'https://www.youtube.com/watch?v=qvAi2mPgYbM'
+
         }
     },
     methods:{
-
+      openVideo: function(value){         
+        
+        if(value == 'hands'){
+          window.open(this.urlVideoHands, '_blank');      
+        }else if(value == 'vegetables'){
+          window.open(this.urlVideoVegetables, '_blank');      
+        }
+      }
     },
 
 }
@@ -109,8 +116,9 @@ export default {
   .card{
     height: 100%;
   }
+ 
   .card-img-top{
-    padding: 1rem 6rem;
+    padding: 1rem 5rem;
     height:6rem;
     /* width: 18rem; */
   }
@@ -123,16 +131,18 @@ export default {
     display: block;
   }
   .card-margin{
-    margin-bottom: 1rem;
+    margin-bottom: 1rem;    
+    text-align: center
+  }
+  .btn-width{
+    width: 100%;
+    height: 100%;
   }
  
    
     @media (max-width: 1024px) {
-    
-    .navbar-brand{
-      font-size: 0.8rem;
-    }
-    
+   
+ 
     .card-img-top{
       padding: 0.2rem 4.5rem;
       height:3.3rem;     
@@ -172,9 +182,6 @@ export default {
   }
  
   @media (max-width: 480px) {
-    .navbar-brand{
-      font-size: 0.8rem;
-    }
     .card-img-top{
       padding: 0.2rem 1.3rem;
       height:3rem;
@@ -212,8 +219,14 @@ export default {
   }
   @media (max-width: 420px){
     .card-img-top{
-      padding: 0.2rem 3rem;
-      height:3rem;     
+      padding: 0.2rem 7.5rem;
+      height:5rem;     
+    }
+  }
+  @media (max-width: 390px){
+    .card-img-top{
+      padding: 0.2rem 7.3rem;
+      height:3.8rem;     
     }
   }
   @media (max-width: 320px) {
