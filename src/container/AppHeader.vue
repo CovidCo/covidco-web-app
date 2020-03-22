@@ -1,6 +1,8 @@
 <template>
     <b-navbar toggleable="lg" variant="light">
-      <b-navbar-brand to="main"><strong>Covid-Co</strong></b-navbar-brand>
+      <b-navbar-brand to="main">
+        <img src="../assets/logo.png" class="logo"/>
+      </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
@@ -39,6 +41,10 @@ export default {
 .navbar{
   padding: 0.5rem 0.5rem; 
 
+}
+
+.logo{
+  max-width: 50px;
 }
 
 .navbar-brand, .navbar-toggler{
