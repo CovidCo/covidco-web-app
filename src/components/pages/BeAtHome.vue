@@ -52,7 +52,7 @@
                                           :class="{'form-control is-invalid': $v.city.$error,'form-control is-valid': !$v.city.$invalid}"
                                           placeholder="Ingresa tu ciudad"
                                           v-on:placechanged="getAddressData"
-                                          types="(cities)">
+                                          types="(cities)">                                          
                                         </vue-google-autocomplete>
                                         <b-form-invalid-feedback v-if="!$v.city.required">
                                             Tu ubicación es necesaria
@@ -161,11 +161,18 @@ export default {
         getAddressData: function(addressData, placeResultData, id){
             console.log(placeResultData)
             console.log(id)            
-            this.city = addressData.locality            
-            this.place_id = placeResultData.place_id
+
+            if(addressData.locality != null){
+                this.city = addressData.locality
+            }else{
+                this.city = addressData.administrative_area_level_1
+            }             
+            this.place_id = placeResultData.place_id 
+            console.log(addressData)
+            console.log(this.city)
         },
         submitForm: async function(){
-            this.$v.$touch()            
+            this.$v.$touch()          
             if (this.$v.$invalid) {
                 this.$noty.warning("Verifica los datos insertados")           
             }else{
