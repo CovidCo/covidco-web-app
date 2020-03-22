@@ -93,10 +93,6 @@ export default {
 
     @media (max-width: 1024px) {
     
-    .navbar-brand{
-      font-size: 0.8rem;
-    }
-    
     .card-img-top{
       padding: 0.2rem 5rem;
       height:3.3rem;     
@@ -139,9 +135,6 @@ export default {
  
 
   @media (max-width: 480px) {
-    .navbar-brand{
-      font-size: 0.8rem;
-    }
 
     .card-img-top{
       padding: 0.2rem 1.3rem;
