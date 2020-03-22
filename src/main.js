@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+import VueNoty from 'vuejs-noty'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import firebase from 'firebase'
 
 import App from './App.vue'
 import router from './router/index.js'
 import store from './store'
-
+import axiosService from './services/service'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
+Vue.use(VueNoty)
 
 var firebaseConfig = {
         apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
@@ -26,7 +27,9 @@ var firebaseConfig = {
     // activate the configuration
 firebase.initializeApp(firebaseConfig);
 
+Vue.prototype.$https = axiosService
 Vue.prototype.$firebase = firebase;
+
 
 Vue.config.productionTip = false
 
