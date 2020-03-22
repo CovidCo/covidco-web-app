@@ -127,10 +127,11 @@
                         <label for="city"><small id="nameHelp" class="form-text text-muted">Ciudad</small></label>
 
                         <vue-google-autocomplete
-                          v-model="city"
+                          v-model.trim="$v.city.$model"
                           id="city"
                           ref="city"
-                          classname="form-control {'form-control is-invalid': $v.city.$error,'form-control is-valid': !$v.city.$invalid}"
+                          classname="form-control"
+                          :class="{'form-control is-invalid': $v.city.$error,'form-control is-valid': !$v.city.$invalid}"
                           placeholder="Ingresa tu ciudad"
                           v-on:placechanged="getAddressData"
                           types="(cities)">

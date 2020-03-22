@@ -1,7 +1,6 @@
 <template>
   <b-container>
-    <h1>Yo también estoy en casa</h1>    
-   
+    <h1>Yo también estoy en casa</h1> 
     <br>
     <div class="container-fluid main-page">
         <b-row>
@@ -29,15 +28,15 @@
                                 <b-col sm="12" md="12">
                                     <div class="form-group">
                                         <label for="city"><small id="nameHelp" class="form-text text-muted">Ciudad</small></label>
-
                                         <vue-google-autocomplete
-                                        v-model="city"
-                                        id="city"
-                                        ref="city"
-                                        classname="form-control {'form-control is-invalid': $v.city.$error,'form-control is-valid': !$v.city.$invalid}"
-                                        placeholder="Ingresa tu ciudad"
-                                        v-on:placechanged="getAddressData"
-                                        types="(cities)">
+                                          v-model.trim="$v.city.$model"
+                                          id="city"
+                                          ref="city"
+                                          classname="form-control"
+                                          :class="{'form-control is-invalid': $v.city.$error,'form-control is-valid': !$v.city.$invalid}"
+                                          placeholder="Ingresa tu ciudad"
+                                          v-on:placechanged="getAddressData"
+                                          types="(cities)">
                                         </vue-google-autocomplete>
                                         <b-form-invalid-feedback v-if="!$v.city.required">
                                             Tu ubicación es necesaria
@@ -77,28 +76,22 @@
                 </form>
             </b-col>
         </b-row>
-
+        <!-- 
         <hr>
-        
         <b-row v-if="false">
             <b-col sm="6" md="8">
                 <h5 class="graph-title">Total de personas en casa por departamentos</h5>               
                 <Graph/>
-            </b-col>
-            
-          
-            
+            </b-col> 
         </b-row>
-        
-       
-            
+        --> 
     </div>
   </b-container>
 </template>
 
 <script>
 import VueGoogleAutocomplete from 'vue-google-autocomplete'
-import Graph from '../charts/Line.vue'
+// import Graph from '../charts/Line.vue'
 import moment from 'moment'
 moment.locale('es')
 
@@ -108,17 +101,28 @@ export default {
     
     name: 'BeAtHome',
     components:{
-        VueGoogleAutocomplete,
-        Graph
+        VueGoogleAutocomplete
     }, 
     data(){
         return{
-            quantity: 1200,
+            quantity: 0,
             city: null, 
             email: '',
             startDate: null,
             place_id: null
         }
+    },
+    async beforeCreate(){
+      try{
+        let response = await this.$https.get('/homeReports/counter')
+        if (response.status == 200){
+          this.quantity = response.data.data.home_reports
+        } else { 
+          this.$noty.warning("No hemos podido obtener los datos")
+        } 
+      } catch(e){
+        console.log('could not fetch data: ' + e)
+      }
     },
     validations: {                    
         city:{
@@ -146,19 +150,23 @@ export default {
                 this.$noty.warning("Verifica los datos insertados")           
             }else{
                 let payload = {
-                    "data": {
+                    data: {
                         email: this.email,
                         city: this.city,
                         place_id: this.place_id,
                         home_at:  moment(String(this.startDate)).format('DD/MM/YYYY')
                     }
                 }
-                console.log(JSON.stringify(payload))
-          
+                let response = await this.$https.post('/homeReports', payload)
+                if (response.status == 200){
+                  this.$noty.success("Hemos recibido tus datos, por mas personas en casa!")
+                  this.$router.push('/main')
+                } else { 
+                    this.$noty.warning("No hemos podido registrar tu información")
+                } 
             }     
         }
     },
-
 }
 </script>
 

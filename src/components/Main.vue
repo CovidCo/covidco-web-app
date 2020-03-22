@@ -26,11 +26,19 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col sm="6" offset-sm="3" md="4" offset-md="4">
+                <b-col sm="6" md="4">
                   <div class="card">
                     <img class="card-img-top" src="../assets/img/fever.png" alt="Card image cap">
                     <div class="card-body">
                       <b-button variant="warning" @click.prevent="visitPage('diagnosis')"> No me siento bien </b-button>
+                    </div>
+                  </div>
+                </b-col>
+                <b-col sm="6" md="4" offset-md="4">
+                  <div class="card">
+                    <img class="card-img-top" src="../assets/img/hand-wash.png" alt="Card image cap">
+                    <div class="card-body">
+                      <b-button variant="primary" @click.prevent="visitPage('beathome')"> ¡Estamos en casa! </b-button>
                     </div>
                   </div>
                 </b-col>
@@ -57,6 +65,8 @@ export default {
           this.$router.push('/symptoms')
         } else if (page == 'diagnosis'){
           this.$router.push('/initial_diagnosis')
+        } else if (page == 'beathome'){
+          this.$router.push('/beathome')
         } else {
           console.log('no redirect')
         }
