@@ -23,6 +23,7 @@ yarn-error.log*
 # env configuration
 .env.production
 .env.local
+.env.staging
 
 # firebase 
 .firebase/*
