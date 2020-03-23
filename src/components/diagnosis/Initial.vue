@@ -206,7 +206,8 @@ export default {
       gender: '', 
       neighborhood: '', 
       terms_and_conditions: false, 
-      pain: false
+      pain: false, 
+      place_id: null
     }
   }, 
   components:{
@@ -256,7 +257,8 @@ export default {
             "gender": this.gender,
             "neighborhood": this.neighborhood, 
             "terms_and_conditions": this.terms_and_conditions,
-            "pain": this.pain
+            "pain": this.pain, 
+            "place_id": this.place_id
           }
         }
         let response = await this.$https.post('/cases', payload)
@@ -277,7 +279,12 @@ export default {
     getAddressData: function(addressData, placeResultData, id){
         console.log(placeResultData)
         console.log(id)
-        this.city = addressData.locality
+        if(addressData.locality != null){
+          this.city = addressData.locality
+        }else{
+          this.city = addressData.administrative_area_level_1
+        }             
+        this.place_id = placeResultData.place_id 
     },
   }
 }
