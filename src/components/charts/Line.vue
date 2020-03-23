@@ -60,17 +60,20 @@ export default {
       let citiesObject = this.chartData.home_reports
       let cities = Object.keys(citiesObject)    
       let values = []
+      let colors = []
       cities.forEach(element => {
         let val = citiesObject[element]
         values.push(val)
+        colors.push('#'+(Math.random()*0xFFFFFF<<0).toString(16))
       });
       values.push(0)
+      this.colors = colors 
       this.renderChart(   
          {
           labels: cities,
           datasets: [
             {
-              label: 'Ciudades' ,
+              label: 'Personas',
               backgroundColor: this.colors,
               data: values
             }
