@@ -104,18 +104,18 @@
         </b-row>
         
         <hr>
-        <h2 class="graph-title">Total de personas en casa por país</h2>               
+        <h2 class="graph-title">Total de personas en casa por ciudad</h2>               
         <b-row>           
             <b-col  sm="12" md="7" offset-md="3" >               
-                <Graph :data="data"  />
+                <Graph/>
             </b-col> 
         </b-row>
+        <!--  TBD -->
         <!-- <b-row>           
             <b-col  sm="12" md="7" offset-md="3" v-for="data in datas" v-bind:key="data.country" >               
                 <Graph :data="data"  />
             </b-col> 
-        </b-row> -->
-        
+        </b-row> --> 
     </div>
   </b-container>
 </template>
@@ -146,30 +146,7 @@ export default {
             city: null, 
             email: '',
             startDate: null,
-            place_id: null,
-            datas: [
-                {
-                    country: 'Colombia',
-                    departments: ['Antioquia', 'Cauca', 'Valle', 'Santander', 'Nariño'],
-                    values: [29,2,4,6,1],                                              
-                },
-                {
-                    country: 'Perú',
-                    departments: ['Lima', 'Arequipa', 'Callao'],
-                    values: [30,40,10,0]                                                                     
-                }
-            ],
-            
-            data: {
-                "home_reports": {
-                    "Manizales": "1",
-                    "Callao": "1",
-                    "Cali": "1",
-                    "Paris": "2",
-                    "Medellín": "2",
-                    "Bogota": "1"
-                }            
-            }                                                    
+            place_id: null
         }
     },
     async beforeCreate(){

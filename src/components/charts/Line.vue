@@ -23,56 +23,87 @@ export default {
         'rgb(229, 83, 83)', //red
         'rgb(249, 177, 21)',//yellow
         'rgb(51, 153, 255)',//blueLight
-      ]
+      ], 
+      datas: [
+          {
+              country: 'Colombia',
+              departments: ['Antioquia', 'Cauca', 'Valle', 'Santander', 'Nariño'],
+              values: [29,2,4,6,1],                                              
+          },
+          {
+              country: 'Perú',
+              departments: ['Lima', 'Arequipa', 'Callao'],
+              values: [30,40,10,0]                                                                     
+          }
+      ], 
+      chartData: null
+    }
+  },
+  async beforeCreate(){
+    try{
+      let response = await this.$https.get('/homeReports/statistics/place_id')
+      if (response.status == 200){
+        console.log(response)
+        this.chartData = response.data.data
+        this.buildChart()
+      } else { 
+        this.$noty.warning("No hemos podido obtener los datos")
+      } 
+    } catch(e){
+      console.log('could not fetch data: ' + e)
     }
   },
   mounted () {     
-    let citiesObject = this.data.home_reports
-    let cities = Object.keys(citiesObject)    
-    let values = []
-    cities.forEach(element => {
-      let val = citiesObject[element]
-      values.push(val)
-    });
-    values.push(0)
-    this.renderChart(   
-       {
-        labels: cities,
-        datasets: [
-          {
-            label: 'Ciudades' ,
-            backgroundColor: this.colors,
-            data: values
-          }
-        ]
-      },  
-      //  {
-      //   labels: this.data.departments,
-      //   datasets: [
-      //     {
-      //       label: this.data.country,
-      //       backgroundColor: this.colors,
-      //       data: this.data.values
-      //     }
-      //   ]
-      // },  
-      {
-        responsive: true,
-        maintainAspectRatio: true,
-        tooltips: {
-          enabled: true,
-          // custom: CustomTooltips,
-          intersect: true,
-          mode: 'index',
-          position: 'nearest',
-          callbacks: {
-            labelColor: function (tooltipItem, chart) {
-              return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].backgroundColor }
+  }, 
+  methods: {
+    buildChart: function(){
+      let citiesObject = this.chartData.home_reports
+      let cities = Object.keys(citiesObject)    
+      let values = []
+      cities.forEach(element => {
+        let val = citiesObject[element]
+        values.push(val)
+      });
+      values.push(0)
+      this.renderChart(   
+         {
+          labels: cities,
+          datasets: [
+            {
+              label: 'Ciudades' ,
+              backgroundColor: this.colors,
+              data: values
+            }
+          ]
+        },  
+        //  {
+        //   labels: this.data.departments,
+        //   datasets: [
+        //     {
+        //       label: this.data.country,
+        //       backgroundColor: this.colors,
+        //       data: this.data.values
+        //     }
+        //   ]
+        // },  
+        {
+          responsive: true,
+          maintainAspectRatio: true,
+          tooltips: {
+            enabled: true,
+            // custom: CustomTooltips,
+            intersect: true,
+            mode: 'index',
+            position: 'nearest',
+            callbacks: {
+              labelColor: function (tooltipItem, chart) {
+                return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].backgroundColor }
+              }
             }
           }
         }
-      }
-    )
+      )
+    }
   }
 }
 </script>
