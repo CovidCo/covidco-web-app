@@ -44,7 +44,7 @@ export default {
 }
 
 .logo{
-  max-width: 50px;
+  max-width: 80px;
 }
 
 .navbar-brand, .navbar-toggler{
