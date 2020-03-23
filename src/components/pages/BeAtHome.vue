@@ -5,7 +5,7 @@
     <div class="container-fluid main-page">
         <b-row>
             <b-col sm="12" md="6" lg="6">
-                <h5>¡Todos en casa para ayudar a combatir el COVID-19!</h5>
+                <h3>¡Todos en casa para ayudar a combatir el COVID-19!</h3>
                 <p>Mostramos cuántos de nosotros ya estamos en casa.</p>
                 <p>El propósito de esta página es ayudar a crear conciencia sobre este tema tan importante en este momento.</p>
                 <br>
@@ -75,6 +75,16 @@
                                 </b-col>
                                 <b-col sm="12" md="12">
                                    <div class="form-group">
+                                        <label for="familyMembers"><small id="familyMembersHelp" class="form-text text-muted">Número total de personas en casa?</small></label>
+                                        <input type="Number" class="form-control" id="familyMembers" aria-describedby="familyMembersHelp" v-model.trim="$v.familyMembers.$model"
+                                            :class=" {'is-invalid': $v.familyMembers.$error,'is-valid': !$v.familyMembers.$invalid}">                                        
+                                        <b-form-invalid-feedback v-if="!$v.familyMembers.required">
+                                            Debes insertar cuántas personas son en total.
+                                        </b-form-invalid-feedback>                                       
+                                    </div>
+                                </b-col>
+                                <b-col sm="12" md="12">
+                                   <div class="form-group">
                                         <label for="date"><small id="nameHelp" class="form-text text-muted">¿Desde cuándo en casa?</small></label>
                                         <input type="date" class="form-control" id="date" aria-describedby="emailHelp" v-model.trim="$v.startDate.$model"
                                             :class=" {'is-invalid': $v.startDate.$error,'is-valid': !$v.startDate.$invalid}">    
@@ -92,15 +102,16 @@
                 </form>
             </b-col>
         </b-row>
-        <!-- 
+        
         <hr>
-        <b-row v-if="false">
-            <b-col sm="6" md="8">
-                <h5 class="graph-title">Total de personas en casa por departamentos</h5>               
-                <Graph/>
+        <h2 class="graph-title">Total de personas en casa por país</h2>               
+        <b-row>           
+            <b-col  sm="12" md="7" offset-md="3" v-for="data in datas" v-bind:key="data.country" >
+                <!-- <h3 class="p-centered"><strong>{{data.country}}</strong> </h3> -->
+                <Graph :data="data"  />
             </b-col> 
         </b-row>
-        --> 
+        
     </div>
   </b-container>
 </template>
@@ -109,7 +120,7 @@
 import VueGoogleAutocomplete from 'vue-google-autocomplete'
 import VueGoodshareFacebook from "vue-goodshare/src/providers/Facebook.vue";
 import VueGoodshareWhatsapp from "vue-goodshare/src/providers/WhatsApp.vue";
-// import Graph from '../charts/Line.vue'
+import Graph from '../charts/Line.vue'
 import moment from 'moment'
 moment.locale('es')
 
@@ -121,21 +132,36 @@ export default {
     components:{
         VueGoogleAutocomplete, 
         VueGoodshareFacebook, 
-        VueGoodshareWhatsapp
+        VueGoodshareWhatsapp,
+        Graph
     }, 
     data(){
         return{
             quantity: 0,
+            familyMembers: 1,
             city: null, 
             email: '',
             startDate: null,
-            place_id: null
+            place_id: null,
+            datas: [
+                {
+                    country: 'Colombia',
+                    departments: ['Antioquia', 'Cauca', 'Valle', 'Santander', 'Nariño'],
+                    values: [29,2,4,6,1],                                              
+                },
+                {
+                    country: 'Perú',
+                    departments: ['Lima', 'Arequipa', 'Callao'],
+                    values: [30,40,10,0]                                                                     
+                }
+            ]                                                      
         }
     },
     async beforeCreate(){
       try{
         let response = await this.$https.get('/homeReports/counter')
         if (response.status == 200){
+          console.log(response)
           this.quantity = response.data.data.home_reports
         } else { 
           this.$noty.warning("No hemos podido obtener los datos")
@@ -153,6 +179,9 @@ export default {
             email
         },
         startDate:{
+            required
+        },
+        familyMembers:{
             required
         }
       
@@ -181,7 +210,8 @@ export default {
                         email: this.email,
                         city: this.city,
                         place_id: this.place_id,
-                        home_at:  moment(String(this.startDate)).format('DD/MM/YYYY')
+                        home_at:  moment(String(this.startDate)).format('DD/MM/YYYY'),
+                        familyMembers: this.familyMembers
                     }
                 }
                 try{ 
@@ -218,4 +248,100 @@ export default {
     .social{
       text-align: center; 
     }
+    .p-centered{
+        text-align: center;
+    }
+    
+
+    @media (max-width: 1024px) {
+        h1{
+        font-size: 2rem
+        }
+        h2{
+        font-size: 1.5rem
+        }
+        h3{
+        font-size: 1.2rem
+        }
+        h4{
+        font-size: 1.0rem
+        }
+        h5{
+            font-size: 0.9rem
+        }
+    }
+    @media(max-width: 991px){
+
+    }
+ 
+    @media (max-width: 480px) {
+        h1{
+            font-size: 1.5rem
+        }
+        h2{
+            font-size: 1.2rem
+        }
+        h3{
+            font-size: 0.9rem
+        }
+        h4{
+            font-size: 0.7rem
+        }
+        h5{
+            font-size: 0.6rem
+        }
+  }
+  @media (max-width: 420px){
+        h1{
+            font-size: 1.5rem
+        }
+        h2{
+            font-size: 1.2rem
+        }
+        h3{
+            font-size: 0.9rem
+        }
+        h4{
+            font-size: 0.7rem
+        }
+        h5{
+            font-size: 0.6rem
+        }
+  }
+  @media (max-width: 390px){
+        h1{
+            font-size: 1.5rem
+        }
+        h2{
+            font-size: 1.1rem
+        }
+        h3{
+            font-size: 0.9rem
+        }
+        h4{
+            font-size: 0.7rem
+        }
+        h5{
+            font-size: 0.6rem
+        }
+  }
+  @media (max-width: 320px) {
+   
+    h1{
+      font-size: 1.2rem
+    }
+    h2{
+      font-size: 0.9rem
+    }
+    h3{
+      font-size: 0.7rem
+    }
+    h4{
+      font-size: 0.5rem
+    }
+    h5{
+      font-size: 0.4rem
+    }
+  }
+
 </style>

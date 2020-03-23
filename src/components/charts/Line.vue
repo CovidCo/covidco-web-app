@@ -1,36 +1,49 @@
 
 <script>
-import { Line } from 'vue-chartjs'
+import { Bar } from 'vue-chartjs'
 
 
 export default {
   components: {
 
   },
-  extends: Line,
-  mounted () {
+  props:{
+    data:{      
+      default: '[]'
+    },
+    
+  }, 
+  extends: Bar,
+  data(){
+    return{
+      colors: [
+        'rgb(50, 31, 219,0.9)',//purple
+        'rgb(206, 210, 216,0.9)',//gray
+        'rgb(46, 184, 92)', //green
+        'rgb(229, 83, 83)', //red
+        'rgb(249, 177, 21)',//yellow
+        'rgb(51, 153, 255)',//blueLight
+      ]
+    }
+  },
+  mounted () {     
     this.renderChart(
-      {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+   
+       {
+        labels: this.data.departments,
         datasets: [
           {
-            label: 'Data One',
-            backgroundColor: 'rgb(50, 31, 219,0.3)',
-            data: [30, 39, 10, 50, 30, 70, 35]
-          },
-          {
-            label: 'Data Two',
-            // backgroundColor: hexToRgba('#00D8FF', 90),
-            backgroundColor: 'rgb(46, 184, 92,0.5)',
-            data: [39, 80, 40, 35, 40, 20, 45]
+            label: this.data.country,
+            backgroundColor: this.colors,
+            data: this.data.values
           }
         ]
-      },
+      },  
       {
         responsive: true,
         maintainAspectRatio: true,
         tooltips: {
-          enabled: false,
+          enabled: true,
           // custom: CustomTooltips,
           intersect: true,
           mode: 'index',
