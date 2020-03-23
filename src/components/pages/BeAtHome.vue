@@ -203,7 +203,7 @@ export default {
                         city: this.city,
                         place_id: this.place_id,
                         home_at:  moment(String(this.startDate)).format('DD/MM/YYYY'),
-                        familyMembers: this.familyMembers
+                        people_at_home: this.familyMembers
                     }
                 }
                 try{ 
