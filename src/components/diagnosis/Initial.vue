@@ -2,7 +2,8 @@
   <div class="container panel">
     <section>
       <h1 class="title">¿No se siente bien?</h1>
-      <p>Al llenar este formulario, podras determinar si eres es un posible caso de coronavirus.</p>
+      <p>Al llenar este formulario, podras determinar si eres es un posible caso de coronavirus.
+      Quedarás registrado en la lista de usuarios y los médicos se pondrán en contacto contigo.</p>
       <form @submit.prevent>
         <b-row>
           <b-col sm="12" md="6" lg="5">
@@ -13,7 +14,7 @@
               <div class="card-body">
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="fever" v-model="fever">
-                    <label class="form-check-label" for="fever">Fiebre mayor a 38 grados °C, durante los últimos 2 días</label>
+                    <label class="form-check-label" for="fever">Fiebre mayor a 38 grados °C, durante las 2 últimas mediciones.</label>
                   </div>
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="cough" v-model="cough">
