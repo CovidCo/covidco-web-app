@@ -12,6 +12,9 @@ const TermsAndConditions = () =>
 const RecommendationsPage = () =>
   import ('../components/pages/Recommendations.vue')
 
+const AttentionLinesPage = () =>
+  import ('../components/pages/AttentionLines.vue')
+
 const SymptomsPage = () =>
   import ('../components/pages/Symptoms.vue')
 
@@ -36,7 +39,12 @@ let routes = [{
       path: 'recommendations',
       name: 'Recommendations',
       component: RecommendationsPage
-    }, {
+    },{
+      path: 'attention_lines',
+      name: 'AttentionLines',
+      component: AttentionLinesPage
+    },  
+    {
       path: 'symptoms',
       name: 'Symptoms',
       component: SymptomsPage
