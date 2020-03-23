@@ -106,11 +106,15 @@
         <hr>
         <h2 class="graph-title">Total de personas en casa por país</h2>               
         <b-row>           
-            <b-col  sm="12" md="7" offset-md="3" v-for="data in datas" v-bind:key="data.country" >
-                <!-- <h3 class="p-centered"><strong>{{data.country}}</strong> </h3> -->
+            <b-col  sm="12" md="7" offset-md="3" >               
                 <Graph :data="data"  />
             </b-col> 
         </b-row>
+        <!-- <b-row>           
+            <b-col  sm="12" md="7" offset-md="3" v-for="data in datas" v-bind:key="data.country" >               
+                <Graph :data="data"  />
+            </b-col> 
+        </b-row> -->
         
     </div>
   </b-container>
@@ -154,7 +158,18 @@ export default {
                     departments: ['Lima', 'Arequipa', 'Callao'],
                     values: [30,40,10,0]                                                                     
                 }
-            ]                                                      
+            ],
+            
+            data: {
+                "home_reports": {
+                    "Manizales": "1",
+                    "Callao": "1",
+                    "Cali": "1",
+                    "Paris": "2",
+                    "Medellín": "2",
+                    "Bogota": "1"
+                }            
+            }                                                    
         }
     },
     async beforeCreate(){

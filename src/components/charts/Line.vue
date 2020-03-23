@@ -27,18 +27,38 @@ export default {
     }
   },
   mounted () {     
+    let citiesObject = this.data.home_reports
+    let cities = Object.keys(citiesObject)
+    console.log(Object.keys(citiesObject))
+    let values = []
+    cities.forEach(element => {
+      let val = citiesObject[element]
+      values.push(val)
+    });
+    values.push(0)
+  console.log(values)
     this.renderChart(
    
        {
-        labels: this.data.departments,
+        labels: cities,
         datasets: [
           {
-            label: this.data.country,
+            label:'Ciudades' ,
             backgroundColor: this.colors,
-            data: this.data.values
+            data: values
           }
         ]
       },  
+      //  {
+      //   labels: this.data.departments,
+      //   datasets: [
+      //     {
+      //       label: this.data.country,
+      //       backgroundColor: this.colors,
+      //       data: this.data.values
+      //     }
+      //   ]
+      // },  
       {
         responsive: true,
         maintainAspectRatio: true,
