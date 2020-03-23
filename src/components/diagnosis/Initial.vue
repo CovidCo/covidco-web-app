@@ -261,12 +261,16 @@ export default {
             "place_id": this.place_id
           }
         }
-        let response = await this.$https.post('/cases', payload)
-        if (response.status == 200){
-          this.$noty.success("Hemos recibido tus datos, trataremos de ayudarte pronto!")
-          this.$router.push('/main')
-        } else { 
-            this.$noty.warning("No hemos podido registrar tu solicitud")
+        try{
+          let response = await this.$https.post('/cases', payload)
+          if (response.status == 200){
+            this.$noty.success("Hemos recibido tus datos, trataremos de ayudarte pronto!")
+            this.$router.push('/main')
+          } else { 
+              this.$noty.warning("No hemos podido registrar tu solicitud")
+          }
+        } catch(e){
+          this.$noty.warning("No hemos podido registrar tu solicitud")
         }
       }
     },
