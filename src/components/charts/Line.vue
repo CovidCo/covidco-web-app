@@ -28,22 +28,19 @@ export default {
   },
   mounted () {     
     let citiesObject = this.data.home_reports
-    let cities = Object.keys(citiesObject)
-    console.log(Object.keys(citiesObject))
+    let cities = Object.keys(citiesObject)    
     let values = []
     cities.forEach(element => {
       let val = citiesObject[element]
       values.push(val)
     });
     values.push(0)
-  console.log(values)
-    this.renderChart(
-   
+    this.renderChart(   
        {
         labels: cities,
         datasets: [
           {
-            label:'Ciudades' ,
+            label: 'Ciudades' ,
             backgroundColor: this.colors,
             data: values
           }
