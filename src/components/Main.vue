@@ -78,7 +78,7 @@ export default {
     padding: 1rem 3rem;
     height:11rem;  
   }
-   .card-img-top-lg12{
+  .card-img-top-lg12{
     padding: 1rem 3rem;
     height:10rem;  
   }
