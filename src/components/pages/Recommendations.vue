@@ -66,7 +66,7 @@
         <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
           <button class="btn btn-info btn-width" @click="openVideo('vegetables')">
             <img src="../../assets/img/hand-wash.png" class="card-img-top" alt="...">
-            <p>Desinfecta frutas. Ver video.</p>                        
+            <p>Desinfecta frutas y verduras. Ver video.</p>                        
           </button>
         </div>  
 
@@ -91,7 +91,7 @@ export default {
           dangerModal: false,
           infoModal: false,
           urlVideoHands: 'https://www.youtube.com/watch?v=NMmAj1EKdVo&t=2s',
-          urlVideoVegetables: 'https://www.youtube.com/watch?v=qvAi2mPgYbM'
+          urlVideoVegetables: 'https://www.youtube.com/watch?v=aNjF34-0lRU'
 
         }
     },
