@@ -265,7 +265,7 @@ export default {
         try{
           let response = await this.$https.post('/cases', payload)
           if (response.status == 200){
-            this.$noty.success("Hemos recibido tus datos, trataremos de ayudarte pronto!")
+            this.$noty.success("Solicitud recibida, pronto un especialista te contactará!")
             this.$router.push('/main')
           } else { 
               this.$noty.warning("No hemos podido registrar tu solicitud")
