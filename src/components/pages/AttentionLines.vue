@@ -68,7 +68,15 @@ export default {
           { contacto: 'Dickerson', telefono: 'Macdonald' }
         ]
         }
-   }, 
+  },
+  mounted(){
+    this.fetchPhoneNumbers().then((data) => {
+      console.log('hendrix says  ' + JSON.stringify(data))
+
+    }).catch((e) => {
+      console.log('error ' + e)
+    })  
+  }, 
   components:{
     VueGoogleAutocomplete
   }, 
@@ -78,7 +86,7 @@ export default {
     }
   }, 
   methods:{
-      getAddressData: function(addressData, placeResultData, id){
+    getAddressData: function(addressData, placeResultData, id){
         console.log(placeResultData)
         console.log(id)
         if(addressData.locality != null){
@@ -88,7 +96,26 @@ export default {
         }             
         this.place_id = placeResultData.place_id 
     },
-  } 
+    fetchPhoneNumbers: function(){
+      let db = this.$firebase.firestore();
+      let docRef = db.collection("attention_lines")
+      return new Promise((resolve, reject) => {
+        docRef.get().then((querySnapshot) => {
+          console.log(querySnapshot)
+          querySnapshot.forEach((doc) => {
+              let documentId =  doc.id
+              let commentRecord = doc.data()
+              console.log(documentId)
+              console.log(commentRecord)
+          })
+          resolve({'hey': 'joe'})
+        }).catch((e) => {
+          console.log(e)
+          reject(null)
+        })
+      })
+    }
+  }
 }
 </script>
 
