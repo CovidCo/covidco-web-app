@@ -5,7 +5,7 @@
                 <br>
                 <div class="card">
                     <div class="card-header">
-                        Líneas de atención
+                        Líneas de atención a nivel nacional
                     </div>
                     <div class="card-body">
                         <b-row>
@@ -63,19 +63,19 @@ export default {
           },
         ],
         items: [
-          { contacto: 'Dickerson', telefono: 'Macdonald' },
-          { contacto: 'Dickerson', telefono: 'Macdonald' },
-          { contacto: 'Dickerson', telefono: 'Macdonald' }
+          { contacto: 'Min Salud Línea nacional ', telefono: '01 8000 95 55 90' },
+          { contacto: 'Min Salud Bogotá', telefono: '330 50 41' },
+          { contacto: 'Min Salud celular', telefono: '192' }
         ]
         }
   },
   mounted(){
-    this.fetchPhoneNumbers().then((data) => {
-      console.log('hendrix says  ' + JSON.stringify(data))
+    // this.fetchPhoneNumbers().then((data) => {
+    //   console.log('hendrix says  ' + JSON.stringify(data))
 
-    }).catch((e) => {
-      console.log('error ' + e)
-    })  
+    // }).catch((e) => {
+    //   console.log('error ' + e)
+    // })  
   }, 
   components:{
     VueGoogleAutocomplete
@@ -87,32 +87,53 @@ export default {
   }, 
   methods:{
     getAddressData: function(addressData, placeResultData, id){
-        console.log(placeResultData)
+        // console.log(placeResultData)
+        console.log(addressData)
         console.log(id)
         if(addressData.locality != null){
-          this.city = addressData.locality
-        }else{
+        //   this.city = addressData.locality
+        //  
+        // }
+        // else{
           this.city = addressData.administrative_area_level_1
+           this.fetchPhoneNumbers(this.city)
         }             
         this.place_id = placeResultData.place_id 
     },
-    fetchPhoneNumbers: function(){
+    fetchPhoneNumbers: function(place){
+      console.log(place)
       let db = this.$firebase.firestore();
       let docRef = db.collection("attention_lines")
-      return new Promise((resolve, reject) => {
-        docRef.get().then((querySnapshot) => {
-          console.log(querySnapshot)
-          querySnapshot.forEach((doc) => {
-              let documentId =  doc.id
+      this.items = [
+          { contacto: 'Min Salud Línea nacional ', telefono: '01 8000 95 55 90' },
+          { contacto: 'Min Salud Bogotá', telefono: '330 50 41' },
+          { contacto: 'Min Salud celular', telefono: '192' }
+        ]
+      // return new Promise((resolve, reject) => {
+        docRef.where('city','==',place).get().then((querySnapshot) => {
+          // console.log(querySnapshot)
+          querySnapshot.forEach((doc) => {            
+              // let documentId =  doc.id
               let commentRecord = doc.data()
-              console.log(documentId)
-              console.log(commentRecord)
+              // console.log(documentId)
+              // console.log(commentRecord)
+              let phones = commentRecord.phone_numbers
+
+              if(phones!=null && phones.length > 0){
+                phones.forEach(item =>{
+                let contact = {
+                  contacto: item.entity,
+                  telefono: item.phone_number
+                }
+                this.items.unshift(contact)
+              })
+              }
           })
-          resolve({'hey': 'joe'})
-        }).catch((e) => {
-          console.log(e)
-          reject(null)
-        })
+        //   resolve({'hey': 'joe'})
+        // }).catch((e) => {
+        //   console.log(e)
+        //   reject(null)
+        // })
       })
     }
   }
