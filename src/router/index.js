@@ -28,11 +28,15 @@ const InitialDiagnosis = () =>
 const BeAtHome = () =>
   import ('../components/pages/BeAtHome.vue')
 
+<<<<<<< HEAD
 const LoginPage = () =>
   import ('../components/auth/Login.vue')
 
 const DashboardDoctor = () =>
   import ('../components/dashboard/Doctor.vue')
+
+const Users = () =>
+  import ('../components/diagnosis/Users.vue')
 
 let routes = [{
     path: '/',
@@ -69,7 +73,11 @@ let routes = [{
         path: 'beathome',
         name: 'BeAtHome',
         component: BeAtHome
-      },
+      }, {
+      path: 'users',
+      name: 'Users',
+      component: Users
+      }
     ]
   }, {
     path: '/login',
@@ -115,6 +123,5 @@ router.beforeEach(async (to, from, next) => {
       next();
     }
 });
-
 
 export default router;
