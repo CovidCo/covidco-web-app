@@ -24,6 +24,9 @@ const InitialDiagnosis = () =>
 const BeAtHome = () => 
   import ('../components/pages/BeAtHome.vue')
 
+const Users = () => 
+  import ('../components/diagnosis/Users.vue')
+
 
 let routes = [{
   path: '/',
@@ -60,7 +63,11 @@ let routes = [{
       path: 'beathome',
       name: 'BeAtHome',
       component: BeAtHome
-    },
+    },{
+      path: 'users',
+      name: 'Users',
+      component: Users
+    }
 
   ]
 }]
