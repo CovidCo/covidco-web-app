@@ -8,6 +8,12 @@
           <div>
             <div class="card-deck">
               <b-row>
+                <div class="col-12 col-md-12 col-lg-11  card-margin">        
+                  <button class="btn btn-warning btn-width" @click.prevent="visitPage('diagnosis')">
+                    <img class="card-img-top-lg12" src="../assets/img/fever.png" alt="Card image cap">
+                    <p> <strong>¡NO ME SIENTO BIEN!. AYUDA MÉDICA</strong>  </p>                        
+                  </button>
+                </div>   
 
                 <div class="col-12 col-md-3   col-lg-3 card-margin">        
                   <button class="btn btn-primary btn-width" @click.prevent="visitPage('beathome')">
@@ -23,19 +29,21 @@
                   </button>
                 </div> 
                 
-                <div class="col-12 col-md-3  offset-md-1 col-lg-3 card-margin">        
+                <!-- <div class="col-12 col-md-3  offset-md-1 col-lg-3 card-margin">        
                   <button class="btn btn-primary btn-width" @click.prevent="visitPage('symptoms')">
                     <img class="card-img-top" src="../assets/img/cough.png" alt="Card image cap">
                     <p>Conoce los síntomas.</p>                        
                   </button>
+                </div>   -->
+
+                <div class="col-12 col-md-3  offset-md-1 col-lg-3 card-margin">        
+                  <button class="btn btn-primary btn-width" @click.prevent="visitPage('lines')">
+                    <img class="card-img-top" src="../assets/img/phone.png" alt="Card image cap">
+                    <p>Líneas de atención a nivel nacional.</p>                        
+                  </button>
                 </div>  
 
-                <div class="col-12 col-md-12 col-lg-11  card-margin">        
-                  <button class="btn btn-warning btn-width" @click.prevent="visitPage('diagnosis')">
-                    <img class="card-img-top-lg12" src="../assets/img/fever.png" alt="Card image cap">
-                    <p> <strong>¡NO ME SIENTO BIEN!. AYUDA MÉDICA</strong>  </p>                        
-                  </button>
-                </div>                                              
+                                                           
               </b-row>                        
             </div>
           </div>
@@ -61,7 +69,10 @@ export default {
           this.$router.push('/initial_diagnosis')
         } else if (page == 'beathome'){
           this.$router.push('/beathome')
-        } else {
+        } else if (page == 'lines'){
+          this.$router.push('/attention_lines')
+        }
+        else {
           console.log('no redirect')
         }
       }
