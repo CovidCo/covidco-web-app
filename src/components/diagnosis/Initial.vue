@@ -97,7 +97,7 @@
                           Tu edad es necesaria
                         </b-form-invalid-feedback>
                         <b-form-invalid-feedback v-if="!$v.age.between">
-                          Parece que tu edad no esta bien 
+                          Debes ser mayor de edad.
                         </b-form-invalid-feedback>
                       </div>
                     </b-col>
@@ -221,7 +221,7 @@ export default {
     },
     age: {
       required, 
-      between: between(20, 120)
+      between: between(18, 120)
     }, 
     gender: {
       required 
