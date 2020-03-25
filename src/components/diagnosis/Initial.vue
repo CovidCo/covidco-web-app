@@ -158,8 +158,9 @@
           <b-col sm="12" md="6" lg="6">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="gridCheck" v-model="terms_and_conditions">
-              <label class="form-check-label" for="gridCheck">
-                <a class="link" v-on:click="openInBlankPage('terms')">Para continuar debes aceptar Términos y Condiciones</a>
+                 Para continuar debes aceptar
+                 <label class="form-check-label link-color" for="gridCheck">
+                 <a class="link" v-on:click="openInBlankPage('terms')"> Términos y Condiciones</a>
               </label>
             </div>
           </b-col>
@@ -313,5 +314,10 @@ export default {
   }
   .invalid-feedback-radios{
     display: block; 
+  }
+  .link-color{
+    color: 	#3399ff;
+    border-bottom: 1px solid #3399ff;
+
   }
 </style>
