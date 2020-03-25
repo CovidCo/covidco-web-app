@@ -21,49 +21,55 @@ const SymptomsPage = () =>
 const InitialDiagnosis = () =>
   import ('../components/diagnosis/Initial.vue')
 
-const BeAtHome = () => 
+const BeAtHome = () =>
   import ('../components/pages/BeAtHome.vue')
 
+const LoginPage = () =>
+import ('../components/auth/Login.vue')
 
 let routes = [{
-  path: '/',
-  redirect: '/main',
-  name: '',
-  component: AppContainer,
-  children: [
-    {
-    path: 'main',
-    name: 'Main',
-    component: MainPage
-    }, {
-      path: 'recommendations',
-      name: 'Recommendations',
-      component: RecommendationsPage
-    },{
-      path: 'attention_lines',
-      name: 'AttentionLines',
-      component: AttentionLinesPage
-    },  
-    {
-      path: 'symptoms',
-      name: 'Symptoms',
-      component: SymptomsPage
-    }, {
-      path: 'initial_diagnosis',
-      name: 'InitialDiagnosis',
-      component: InitialDiagnosis
-    }, {
-      path: 'terms',
-      name: 'TermsAndConditions',
-      component: TermsAndConditions
-    }, {
-      path: 'beathome',
-      name: 'BeAtHome',
-      component: BeAtHome
-    },
-
-  ]
-}]
+    path: '/',
+    redirect: '/main',
+    name: '',
+    component: AppContainer,
+    children: [
+      {
+      path: 'main',
+      name: 'Main',
+      component: MainPage
+      }, {
+        path: 'recommendations',
+        name: 'Recommendations',
+        component: RecommendationsPage
+      },{
+        path: 'attention_lines',
+        name: 'AttentionLines',
+        component: AttentionLinesPage
+      },
+      {
+        path: 'symptoms',
+        name: 'Symptoms',
+        component: SymptomsPage
+      }, {
+        path: 'initial_diagnosis',
+        name: 'InitialDiagnosis',
+        component: InitialDiagnosis
+      }, {
+        path: 'terms',
+        name: 'TermsAndConditions',
+        component: TermsAndConditions
+      }, {
+        path: 'beathome',
+        name: 'BeAtHome',
+        component: BeAtHome
+      },
+    ]
+  }, {
+    path: '/login',
+    name: 'Login',
+    component: LoginPage
+  }
+]
 
 let router = new Router({
     mode: 'history', // https://router.vuejs.org/api/#mode
