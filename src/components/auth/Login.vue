@@ -7,27 +7,29 @@
             <b-card no-body class="p-4">
               <b-card-body>
                 <h1>Iniciar Sesión</h1>
+                <div class="alert alert-danger" role="alert" :key="key" v-for="(error_message, key) in errors">
+                  {{error_message}}
+                </div> 
                 <p class="text-muted">Aquí podras hacer seguimiento de tu estado de salud</p>
-                  <b-row>
-                    <b-input-group class="mb-3">
+                  <div v-if="!confirmationCodeStage">
+                    <b-input-group class="mb-12">
                       <b-form-input type="text" class="form-control" placeholder="Número de Teléfono" v-model="phoneNumber"/>
                     </b-input-group>
                     <div id="recaptcha-container" class="capcha"></div>
                     <b-button type="submit" class="btn btn-success mb-3" block v-on:click.prevent="login">
                       <span>Enviar codigo de verificación </span>
                     </b-button>
-                  </b-row>
-                  <b-input-group class="mb-4">
-                    <b-form-input type="text" class="form-control" 
-                      placeholder="Codigo de confirmación" v-model="confirmationCode" v-if="confirmationCodeStage"/>
-                  </b-input-group> 
-                  <b-row>
-                    <b-col cols="12">
-                      <b-button class="btn btn-success mb-3" block v-on:click.prevent="confirmCode">
-                          <span>Iniciar sesión </span>
-                      </b-button>
-                    </b-col>
-                  </b-row>
+                  </div>
+                  <div v-else>
+                    <b-input-group>
+                      <b-form-input type="text" class="form-control" 
+                        placeholder="Codigo de confirmación" v-model="confirmationCode"/>
+                    </b-input-group> 
+                    <br/>
+                    <b-button class="btn btn-success mb-3" block v-on:click.prevent="confirmCode">
+                      <span>Iniciar sesión </span>
+                    </b-button>
+                  </div>
               </b-card-body>
             </b-card>
           </b-card-group>
@@ -48,6 +50,7 @@ export default {
           confirmationResult: null, 
           error: false,
           redirect: null, 
+          recaptcha: null, 
           errors: []
       }
 
@@ -59,34 +62,40 @@ export default {
      this.redirect = {'redirect': redirect, 'id': id}
     }
   },
+  mounted(){
+    this.recaptcha = new this.$firebase.auth.RecaptchaVerifier('recaptcha-container', {'size': 'normal'});
+  },
   methods: {
       login: function(){
+        this.errors = []
         this.$firebase.auth().languageCode = 'es';
-        let recapcha = new this.$firebase.auth.RecaptchaVerifier('recaptcha-container');
-        this.$firebase.auth().signInWithPhoneNumber(this.phoneNumber, recapcha).then((confirmationResult) => {
+        this.$firebase.auth().signInWithPhoneNumber(this.phoneNumber, this.recaptcha).then((confirmationResult) => {
           this.confirmationResult = confirmationResult
           this.confirmationCodeStage = true 
         }).catch((error) =>  {
           console.log(error)
+          this.errors = ['No has podido iniciar sesión']
+          this.confirmationCodeStage = false 
+          this.recaptcha.reset('recaptcha-container');
         });
       },
-      visitSignUp: function(){
-        if (this.redirect){
-          this.$router.replace({ path: '/pages/register', query: this.redirect})
-        } else {
-          this.$router.replace('/pages/register')
-        }
-      }, 
       confirmCode: function(){
-        console.log('code confirmation')
-        let confirmation = this.confirmationResult.confirm(this.confirmationCode)
-        console.log(confirmation)
+        this.confirmationResult.confirm(this.confirmationCode).then((data) => {
+          console.log('welcome :' + data)
+          // redirect to main page and follow the case
+        }).catch((error) => {
+          console.log(error)
+          this.errors = ['Codigo de verificación invalido']
+          this.recaptcha.reset('recaptcha-container');
+          this.confirmationCodeStage = false 
+        })
       }
   }
 }
 </script>
 
 <style scoped>
+
     .sign-up-link {
         color: white;
     }
@@ -95,8 +104,10 @@ export default {
       height: 100px;
       width: 100%;
     }
-
-    .capcha{
-      width: 100%; 
+      
+    #recaptcha-container {
+      margin: auto; 
+      padding: 1rem;
     }
+
 </style>
