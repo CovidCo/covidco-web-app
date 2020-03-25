@@ -50,7 +50,7 @@
                   </div>
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="health_worker" v-model="health_worker">
-                    <label class="form-check-label" for="employee">¿Eres trabajador asistenial de salud?</label>
+                    <label class="form-check-label" for="employee">¿Eres trabajador asistencial de salud?</label>
                   </div>
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="personal_contact" v-model="personal_contact">
