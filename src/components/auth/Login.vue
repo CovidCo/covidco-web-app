@@ -82,7 +82,7 @@ export default {
       confirmCode: function(){
         this.confirmationResult.confirm(this.confirmationCode).then((data) => {
           console.log('welcome :' + data)
-          // redirect to main page and follow the case
+          this.$router.push('/dashboard')
         }).catch((error) => {
           console.log(error)
           this.errors = ['Codigo de verificación invalido']

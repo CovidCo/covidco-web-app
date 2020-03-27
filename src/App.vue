@@ -4,7 +4,19 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App', 
+  beforeCreate(){
+    this.$store.dispatch('fetchLoggedInUserId')
+    let userRole = this.$store.getters.userRole
+    let userId = this.$store.getters.userId 
+    if ((userRole == null || userRole == '') && userId != null){
+        this.$store.dispatch('fetchUser', {'userId': userId}).then(() => {
+        console.log('session created')
+      }).catch((e) => {
+        console.log('session lost: ' + e)
+      })
+    }
+    }
 }
 </script>
 
