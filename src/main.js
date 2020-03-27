@@ -16,6 +16,7 @@ Vue.use(VueRouter)
 Vue.use(VueNoty)
 Vue.use(Vuelidate)
 
+var app = '';
 var firebaseConfig = {
         apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
         authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
@@ -35,8 +36,17 @@ Vue.prototype.$firebase = firebase;
 
 Vue.config.productionTip = false
 
-new Vue({
-  render: h => h(App),
-  router,
-  store
-}).$mount('#app')
+
+/* eslint-disable no-new */
+firebase.auth().onAuthStateChanged(() => {
+    // set token
+    if (!app) {
+      app = new Vue({
+        render: h => h(App),
+        router,
+        store
+      }).$mount('#app')
+    }
+})
+
+

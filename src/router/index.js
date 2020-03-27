@@ -1,7 +1,11 @@
 import Router from 'vue-router'
+import firebase from 'firebase'
 
 const AppContainer = () =>
   import ('../container/AppContainer.vue')
+
+const DoctorContainer = () =>
+  import ('../container/DoctorContainer.vue')
 
 const MainPage = () =>
   import ('../components/Main.vue')
@@ -25,7 +29,10 @@ const BeAtHome = () =>
   import ('../components/pages/BeAtHome.vue')
 
 const LoginPage = () =>
-import ('../components/auth/Login.vue')
+  import ('../components/auth/Login.vue')
+
+const DashboardDoctor = () =>
+  import ('../components/dashboard/Doctor.vue')
 
 let routes = [{
     path: '/',
@@ -68,6 +75,19 @@ let routes = [{
     path: '/login',
     name: 'Login',
     component: LoginPage
+  }, {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: DoctorContainer,
+    meta: {
+      requiresAuth: true
+    },
+    children: [{
+        path: '',
+        name: 'Dashboard',
+        component: DashboardDoctor
+      }
+    ]
   }
 ]
 
@@ -77,5 +97,24 @@ let router = new Router({
     scrollBehavior: () => ({ y: 0 }),
     routes: routes
 })
+
+router.beforeEach(async (to, from, next) => {
+    const currentUser = firebase.auth().currentUser
+    console.log(currentUser)
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+    const isCurrentUser = currentUser != null ? true : false
+    const currentUserId = currentUser != null ? currentUser.uid : ''
+    if (requiresAuth){
+      if (isCurrentUser && currentUserId){
+        console.log('where are you going')
+        next();
+      } else {
+        next({path: '/login', replace: true})
+      }
+    } else {
+      next();
+    }
+});
+
 
 export default router;
