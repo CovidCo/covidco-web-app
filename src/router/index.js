@@ -28,7 +28,6 @@ const InitialDiagnosis = () =>
 const BeAtHome = () =>
   import ('../components/pages/BeAtHome.vue')
 
-<<<<<<< HEAD
 const LoginPage = () =>
   import ('../components/auth/Login.vue')
 
