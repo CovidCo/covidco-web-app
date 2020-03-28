@@ -159,7 +159,7 @@ export default {
           this.$noty.warning("No hemos podido obtener los datos")
         } 
       } catch(e){
-        console.log('could not fetch data: ' + e)
+        this.$noty.warning("No hemos podido obtener los datos")
       }
     },
     validations: {                    

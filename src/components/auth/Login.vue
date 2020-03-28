@@ -63,6 +63,7 @@ export default {
     }
   },
   mounted(){
+    this.$firebase.auth().settings.appVerificationDisabledForTesting = true;
     this.recaptcha = new this.$firebase.auth.RecaptchaVerifier('recaptcha-container', {'size': 'normal'});
   },
   methods: {
