@@ -82,13 +82,7 @@ export default {
     name: 'Recommendations',
     data(){
         return{
-          myModal: false,
-          largeModal: false,
-          smallModal: false,
-          primaryModal: false,
-          successModal: false,
-          warningModal: false,
-          dangerModal: false,
+          myModal: false,          
           infoModal: false,
           urlVideoHands: 'https://www.youtube.com/watch?v=NMmAj1EKdVo&t=2s',
           urlVideoVegetables: 'https://www.youtube.com/watch?v=aNjF34-0lRU'
