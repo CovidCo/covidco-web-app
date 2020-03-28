@@ -1,5 +1,5 @@
 <template>
-    <b-container fluid>
+    <b-container fluid class="main">
       <!-- User Interface controls -->
       <b-row>
         <b-col lg="6" class="my-1">
@@ -287,4 +287,7 @@
 </script>
 
 <style scoped>
+  .main{
+    margin-top: 5rem;
+  }
 </style>

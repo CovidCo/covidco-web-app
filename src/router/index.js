@@ -34,9 +34,6 @@ const LoginPage = () =>
 const DashboardDoctor = () =>
   import ('../components/dashboard/Doctor.vue')
 
-const Users = () =>
-  import ('../components/diagnosis/Users.vue')
-
 let routes = [{
     path: '/',
     redirect: '/main',
@@ -72,10 +69,6 @@ let routes = [{
         path: 'beathome',
         name: 'BeAtHome',
         component: BeAtHome
-      }, {
-      path: 'users',
-      name: 'Users',
-      component: Users
       }
     ]
   }, {
