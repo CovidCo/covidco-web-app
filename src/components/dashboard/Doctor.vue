@@ -91,12 +91,12 @@
 
       <!-- Main table element -->
       <b-table show-empty small stacked="md" ref="table"
-        :busy.sync="isBusy" :items="callCasesApi"
+        :busy.sync="isBusy" :items="callCasesApi" v-model="items"
         :fields="fields" :current-page="currentPage" 
         :per-page="perPage" :filter="filter" :filterIncludedFields="filterOn"
         :sort-by.sync="sortBy" :sort-desc.sync="sortDesc" :sort-direction="sortDirection" @filtered="onFiltered">
         <template v-slot:cell(actions)="row">
-          <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
+          <b-button size="sm" @click.prevent="assignDoctor(row.item.id, row.index)" class="mr-1" v-if="!row.item.status">
             Cambiar estado
           </b-button>
           <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
@@ -139,7 +139,7 @@
           { key: 'fever', label: 'Fiebre', formatter: (value) => {return value ? 'Si' : 'No'},
           sortable: true, sortByFormatted: true, filterByFormatted: true},
           { key: 'fatigue', label: 'Fatiga', formatter: (value) => {return value ? 'Si' : 'No'}},
-          { key: 'status', label: 'Estado', sortable: true, class: 'text-center', formatter: (value) => { return value ? 'No atendido': 'Atendido' } },
+          { key: 'status', label: 'Estado', sortable: true, class: 'text-center', formatter: (value) => { return value ? 'Atendido': 'No atendido' } },
           { key: 'actions', label: 'Acciones' }
         ],
         isBusy: false, 
@@ -280,6 +280,29 @@
           this.$noty.warning("No hemos podido obtener los datos")
           console.log(e)
           return []
+        })
+      }, 
+      assignDoctor(caseId, caseIdIndex){
+        let doctorId = this.$store.getters.userId
+        let url = '/cases/' + caseId
+        let payload = {
+          data: {
+            doctor_id: doctorId 
+          }
+        }
+        return this.$https.put(url, payload).then((response) => {
+          if (response.status == 200){
+            console.log(caseId)
+            console.log(this.items)
+            let record = this.items[caseIdIndex]
+
+            record['_cellVariants'] = {status: 'success'}
+            record['status'] = true   
+            this.items[caseIdIndex] = record 
+          }
+        }).catch((e) => {
+          this.$noty.warning("No hemos podido actualizar el caso")
+          console.log(e)
         })
       }
     }
