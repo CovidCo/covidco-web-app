@@ -2,8 +2,8 @@
   <div class="container panel">
     <section>
       <h1 class="title">¿No se siente bien?</h1>
-      <p>Al llenar este formulario, podras determinar si eres es un posible caso de coronavirus.
-      Quedarás registrado en la lista de usuarios y los médicos se pondrán en contacto contigo.</p>
+      <p>Al llenar este formulario podrás determinar si eres es un posible caso de coronavirus.
+      Quedarás registrado en la lista de usuarios y los médicos voluntarios se pondrán en contacto contigo.</p>
       <form @submit.prevent>
         <b-row>
           <b-col sm="12" md="6" lg="5">
@@ -36,6 +36,8 @@
                     <input type="checkbox" class="form-check-input" id="diarrhea" v-model="diarrhea">
                     <label class="form-check-label" for="diarrhea">Diarrea</label>
                   </div>
+                  <br/>
+                  <i>Esta lista no incluye todo. Consulte a su proveedor de atención médica ante cualquier otro síntoma grave o que le preocupe</i>
               </div>
             </div>
             <br>

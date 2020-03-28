@@ -6,8 +6,10 @@
         v-model="infoModal" @ok="infoModal = false" ok-variant="info" >
         <ol type="1">
           <li>Distanciamiento social (mantener dos metros de distancia entre personas)</li>
-          <li>Lavarse las manos frecuentemente con agua y jabón o alcohol en gel.</li>
-          <li>Toser o estornudar sobre el pliegue del codo o utilizar pañuelos descartables.</li>
+          <li>Lavarse las manos frecuentemente con agua y jabón</li>
+          <li>Si no tienes jabón puedes usar gel antibacterial</li>
+          <li>Recuerda usar gel antibacterial con un porcentaje de alcohol superior al 60%</li>
+          <li>Toser o estornudar sobre el pliegue del codo o utilizar pañuelos descartables</li>
           <li>No llevarse las manos a la cara.</li>
           <li>Ventilar bien los ambientes de la casa y del lugar de trabajo.</li>
           <li>Desinfectar bien los objetos que se usan con frecuencia.</li>
@@ -16,10 +18,31 @@
           <li>No automedicarse.</li>
         </ol>
       </b-modal>
+      <b-modal title="Consejos" variant="info" header-bg-variant="info" content-class="border-info"
+        v-model="infoModalDesinfection" @ok="infoModalDesinfection = false" ok-variant="info" >
+        <ol type="1">
+          <li>Limpie y desinfecte diariamente las superficies que se tocan con frecuencia. 
+              Esto incluye las mesas, las manijas de las puertas, los interruptores de luz, los mesones, 
+              las barandas, los escritorios, los teléfonos, los teclados, los inodoros, los grifos, los lavamanos y los lavaplatos.
+          </li>
+          <li>Si las superficies están sucias, límpielas: lávalas con agua y detergente o jabón antes de desinfectarlas. </li>
+          <li> La mayoría de los desinfectantes comunes para el hogar  funcionarán.</li>
+          <li>IMPORTANTE: Nunca mezcle el blanqueador con cloro o con amoníaco ni con otros productos de limpieza. </li>
+        </ol>
+      </b-modal>
+      <b-modal title="Consejos" variant="info" header-bg-variant="info" content-class="border-info"
+        v-model="infoModalPet" @ok="infoModalPet = false" ok-variant="info" >
+        <ol type="1">
+          <li>Hasta el momento no se ha evidenciado que las mascotas puedan contraer o transmitir COVID-19</li>
+          <li>Al no tener información suficiente de este nuevo virus, es importante que si esta enfermo no tenga contacto con sus mascotas.  
+              Esto signfica que no las debe acariciar o besar.  El cuidado de ellas se debe delegar a otra persona.
+              Si se encuentra solo con sus mascotas, use tapabocas y tenga adecuado lavado de manos.
+          </li>
+        </ol>
+      </b-modal>
     </div>
     <div class="container-fluid main-page">
-      <b-row>
-            
+      <b-row>            
         <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">
           <button class="btn btn-warning btn-width" @click="infoModal = true">
             <img src="../../assets/img/old.png" class="card-img-top" alt="..." >
@@ -31,45 +54,48 @@
         <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
           <button class="btn btn-info btn-width" @click="openVideo('hands')">
             <img src="../../assets/img/hand-wash.png" class="card-img-top" alt="...">
-            <p>Lavar tus manos cada 3 horas. <strong>Ver vídeo</strong></p>            
+            <p>Lavarse las manos es la clave. <strong>Ve el vídeo y enterate de mas</strong></p>            
           </button>
         </div>  
        
         <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
           <button class="btn btn-outline-primary btn-width disabled">
             <img src="../../assets/img/face.png" class="card-img-top" alt="...">
-            <p><strong> No te toques la cara</strong> </p>                            
+            <p>Si no te has lavado las manos. <strong> No te toques la cara </strong> </p>                            
           </button>
         </div>      
        
         <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
           <button class="btn btn-outline-primary btn-width disabled">
             <img src="../../assets/img/mask.png" class="card-img-top" alt="...">
-            <p>Si tienes síntomas de gripe usa tapabocas <strong>NO la mano</strong></p>                            
+            <p>Si tienes síntomas de gripe <strong>usa tapabocas</strong></p>                            
           </button>
         </div>      
        
         <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
           <button class="btn btn-outline-primary btn-width disabled">
             <img src="../../assets/img/cough.png" class="card-img-top" alt="...">
-            <p>Estornuda en el ángulo interno del codo.</p>                            
+            <p>Estornuda en el ángulo interno del codo o en pañuelos descartables. <strong>No uses las manos</strong> </p>
           </button>
-        </div>      
-       
+        </div>       
         <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
-          <button class="btn btn-outline-primary btn-width disabled">
+          <button class="btn btn-outline-primary btn-width disabled" @click="infoModalDesinfection = true">
             <img src="../../assets/img/cleaning-spray.png" class="card-img-top" alt="...">
-            <p>Desinfecta tus pertenencias.</p>                            
+            <p>Desinfecta tus pertenencias. <strong>Abrir instrucciones</strong></p>         
           </button>
-        </div>         
-      
+        </div>          
         <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
           <button class="btn btn-info btn-width" @click="openVideo('vegetables')">
             <img src="../../assets/img/hand-wash.png" class="card-img-top" alt="...">
             <p>Desinfecta frutas y verduras. Ver video.</p>                        
           </button>
         </div>  
-
+        <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
+          <button class="btn btn-info btn-width" @click="infoModalPet = true">
+            <img src="../../assets/img/pets.png" class="card-img-top" alt="...">
+            <p>Cuidados con tu mascota <strong>Abrir instrucciones</strong></p>   
+          </button>
+        </div>  
 
       </b-row>
     </div>
@@ -82,7 +108,6 @@ export default {
     name: 'Recommendations',
     data(){
         return{
-          myModal: false,
           largeModal: false,
           smallModal: false,
           primaryModal: false,
@@ -90,14 +115,15 @@ export default {
           warningModal: false,
           dangerModal: false,
           infoModal: false,
+          infoModalDesinfection: false, 
+          infoModalPet: false, 
           urlVideoHands: 'https://www.youtube.com/watch?v=NMmAj1EKdVo&t=2s',
           urlVideoVegetables: 'https://www.youtube.com/watch?v=aNjF34-0lRU'
 
         }
     },
     methods:{
-      openVideo: function(value){         
-        
+      openVideo: function(value){          
         if(value == 'hands'){
           window.open(this.urlVideoHands, '_blank');      
         }else if(value == 'vegetables'){
