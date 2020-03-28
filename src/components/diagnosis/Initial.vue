@@ -1,5 +1,34 @@
 <template>
   <div class="container panel">
+    <div class="wrapper">
+      <b-modal 
+        title="Consejos" 
+        variant="info" 
+        header-bg-variant="info" 
+        content-class="border-info"
+        v-model="infoModal" 
+        @ok="infoModal = false" 
+        ok-variant="info" >
+          {{notAssociated.description}}
+          <ol type="1">
+                <li v-for="item in notAssociated.suggestions" v-bind:key="item">{{item}}</li>          
+          </ol>
+      </b-modal> 
+      <b-modal 
+      title="Recomendaciones" 
+      variant="warning"
+      header-bg-variant="warning"
+      content-class="border-warning"
+      v-model="warningModal" 
+      @ok="warningModal = false" 
+      ok-variant="warning">
+      {{associated.description}}
+      <ol type="1">
+            <li v-for="item in associated.suggestions" v-bind:key="item">{{item}}</li>          
+      </ol>
+       
+    </b-modal>   
+    </div>
     <section>
       <h1 class="title">¿No se siente bien?</h1>
       <p>Al llenar este formulario, podras determinar si eres es un posible caso de coronavirus.
@@ -208,7 +237,36 @@ export default {
       neighborhood: '', 
       terms_and_conditions: false, 
       pain: false, 
-      place_id: null
+      place_id: null,
+      myModal: true,          
+      infoModal: false,  
+      warningModal: false,          
+      associated: {
+        description: 'Los síntomas que usted presenta, tienen una probabilidad de estar asociados al virus COVID-19. Lo invitamos a seguir las siguientes recomendaciones,'+ 
+        ' y comunicarse a los siguientes números XXXXXXX. ',
+        // +'En caso de no poder comunicarse  estar atento al llamado de los profesionales de la Secretaría de Salud' +
+        // ' de Popayán durante las siguientes 24 horas: ',
+        suggestions: [
+          'Usar tapabocas o mascarilla, teniendo en cuenta que se deben cambiar diariamente.',
+          'Lavado frecuente de manos, mínimo cada tres horas.',
+          'Evite saludar de beso, de mano o dar abrazos.',
+          'Al toser o estornudar use el pliegue del codo. Mirar recomendaciones del Instituto Nacional De Salud.',
+          'Estar a dos o más metros de distancia en caso de convivir con más personas.',
+          'Evite el contacto con adultos mayores. No visite instituciones geriátricas ni personas privadas de la libertad.',
+          'Aislamiento en su habitación, hasta que los profesionales de salud lo contacten.'
+        ]
+      },
+      notAssociated: {
+        description: 'Los síntomas pueden estar NO ASOCIADOS a COVID-19, sin embargo, le recomendamos tener las siguientes precauciones:',
+        suggestions:[
+          'Use tapabocas o mascarilla teniendo en cuenta que se deben cambiar diariamiente.',
+          'Lávese frecuentemente las manos, mínimo cada tres horas.',
+          'Evite saludar de beso, mano o abrazos.',
+          'Al toser o estornudar use el pliegue del codo.',
+          'Estar a dos o más metros de distancia en casos de convivir con más personas',
+          'Evite el contacto con adultos mayores. No visite instituciones geriátricas no personas privadas de la libertad.'
+        ]
+      }
     }
   }, 
   components:{
@@ -262,17 +320,29 @@ export default {
             "place_id": this.place_id
           }
         }
-        try{
-          let response = await this.$https.post('/cases', payload)
-          if (response.status == 200){
-            this.$noty.success("Solicitud recibida, pronto un especialista te contactará!")
-            this.$router.push('/main')
-          } else { 
-              this.$noty.warning("No hemos podido registrar tu solicitud")
-          }
-        } catch(e){
-          this.$noty.warning("No hemos podido registrar tu solicitud")
+        console.log(payload)
+        
+
+        if(this.fever && this.cough && this.breathing && (this.travel || this.health_worker || this.personal_contact)){
+          console.log('caso probable 1 ')                    
+          this.warningModal = true
         }
+        else if(this.fever || this.cough || this.breathing || this.pain || this.fatigue || (this.travel || this.health_worker || this.personal_contact)){
+          console.log('caso probable 2')         
+          this.infoModal = true;
+       
+        }
+        // try{
+        //   let response = await this.$https.post('/cases', payload)
+        //   if (response.status == 200){
+        //     this.$noty.success("Solicitud recibida, pronto un especialista te contactará!")
+        //     this.$router.push('/main')
+        //   } else { 
+        //       this.$noty.warning("No hemos podido registrar tu solicitud")
+        //   }
+        // } catch(e){
+        //   this.$noty.warning("No hemos podido registrar tu solicitud")
+        // }
       }
     },
     openInBlankPage: function(page){
