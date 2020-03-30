@@ -13,8 +13,7 @@
                 <p class="text-muted">Aquí podras hacer seguimiento de tu estado de salud</p>
                   <div v-if="!confirmationCodeStage">
                     <b-input-group class="mb-12">
-                      <vue-tel-input type="text" class="form-control" placeholder="Número de Teléfono" v-model="phoneNumber"> 
-                      </vue-tel-input>
+                      <vue-tel-input type="text" class="form-control" placeholder="Número de Teléfono" v-model="phoneNumber" v-bind="phoneNumberProps"> </vue-tel-input> 
                     </b-input-group>
                     <div id="recaptcha-container" class="capcha"></div>
                     <b-button type="submit" class="btn btn-success mb-3" block v-on:click.prevent="login">
@@ -53,9 +52,13 @@ export default {
           error: false,
           redirect: null, 
           recaptcha: null, 
-          errors: []
+          errors: [], 
+          phoneNumberProps:{
+            mode: "international",
+            defaultCountry: "CO",
+            enabledCountryCode: true,
+          }
       }
-
   }, 
   components: {
     VueTelInput,
@@ -75,6 +78,7 @@ export default {
       login: function(){
         this.errors = []
         this.$firebase.auth().languageCode = 'es';
+        console.log(this.phoneNumber)
         this.$firebase.auth().signInWithPhoneNumber(this.phoneNumber, this.recaptcha).then((confirmationResult) => {
           this.confirmationResult = confirmationResult
           this.confirmationCodeStage = true 
