@@ -8,35 +8,35 @@
           <div>
             <div class="card-deck">
               <b-row>
-                <div class="col-12 col-md-12 col-lg-11  card-margin">        
+                <div class="col-12 col-md-12 col-lg-12  card-margin">        
                   <button class="btn btn-warning btn-width" @click.prevent="visitPage('diagnosis')">
                     <img class="card-img-top-lg12" src="../assets/img/fever.png" alt="Card image cap">
                     <p> <strong>¡No me siento bien!, ¿Que debo hacer?</strong>  </p>                        
                   </button>
                 </div>   
 
-                <div class="col-12 col-md-3   col-lg-3 card-margin">        
+                <div class="col-12 col-md-3 offset-md-1  col-lg-3 card-margin">        
                   <button class="btn btn-primary btn-width" @click.prevent="visitPage('beathome')">
                     <img class="card-img-top" src="../assets/img/medal-color.png" alt="Card image cap">
                     <p>¡Yo ya estoy en casa!</p>                        
                   </button>
                 </div> 
 
-                <div class="col-12 col-md-3 offset-md-1 col-lg-3 card-margin">        
+                <div class="col-12 col-md-3 offset-md-4 col-lg-3 card-margin">        
                   <button class="btn btn-primary btn-width" @click.prevent="visitPage('recommendations')">
                     <img class="card-img-top" src="../assets/img/hand-wash.png" alt="Card image cap">
                     <p>Recomendaciones para prevenir contagio.</p>                        
                   </button>
                 </div> 
                 
-                <!-- <div class="col-12 col-md-3  offset-md-1 col-lg-3 card-margin">        
+                <div class="col-12 col-md-3  offset-md-1 col-lg-3 card-margin">        
                   <button class="btn btn-primary btn-width" @click.prevent="visitPage('symptoms')">
                     <img class="card-img-top" src="../assets/img/cough.png" alt="Card image cap">
                     <p>Conoce los síntomas.</p>                        
                   </button>
-                </div>   -->
+                </div>
 
-                <div class="col-12 col-md-3  offset-md-1 col-lg-3 card-margin">        
+                <div class="col-12 col-md-3  offset-md-4 col-lg-3 card-margin">        
                   <button class="btn btn-primary btn-width" @click.prevent="visitPage('lines')">
                     <img class="card-img-top" src="../assets/img/phone.png" alt="Card image cap">
                     <p>Líneas de atención a nivel nacional.</p>                        
