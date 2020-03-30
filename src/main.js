@@ -9,12 +9,14 @@ import App from './App.vue'
 import router from './router/index.js'
 import store from './store'
 import axiosService from './services/service'
+import VueTelInput from 'vue-tel-input'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
 Vue.use(VueNoty)
 Vue.use(Vuelidate)
+Vue.use(VueTelInput)
 
 var app = '';
 var firebaseConfig = {

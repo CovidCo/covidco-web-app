@@ -13,7 +13,8 @@
                 <p class="text-muted">Aquí podras hacer seguimiento de tu estado de salud</p>
                   <div v-if="!confirmationCodeStage">
                     <b-input-group class="mb-12">
-                      <b-form-input type="text" class="form-control" placeholder="Número de Teléfono" v-model="phoneNumber"/>
+                      <vue-tel-input type="text" class="form-control" placeholder="Número de Teléfono" v-model="phoneNumber"> 
+                      </vue-tel-input>
                     </b-input-group>
                     <div id="recaptcha-container" class="capcha"></div>
                     <b-button type="submit" class="btn btn-success mb-3" block v-on:click.prevent="login">
@@ -40,6 +41,7 @@
 </template>
 
 <script>
+import { VueTelInput } from 'vue-tel-input'
 export default {
   name: 'Login', 
   data: function() {
@@ -54,6 +56,9 @@ export default {
           errors: []
       }
 
+  }, 
+  components: {
+    VueTelInput,
   },
   created(){
     if (this.$route.query){
