@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-row>
-            <b-col sm="12" md="6">
+            <b-col sm="12" md="12">
                 <br>
                 <div class="card">
                     <div class="card-header">
@@ -9,22 +9,21 @@
                     </div>
                     <div class="card-body">
                         <b-row>
-                            <b-col sm="4" md="4" lg="6">
+                            <b-col sm="4" md="12" lg="12">
                             <div class="form-group">
                                 <label for="city"><small id="nameHelp" class="form-text text-muted">Indicanos en que ciudad te encuentras</small></label>
-
                                 <vue-google-autocomplete
-                                v-model.trim="$v.city.$model"
-                                id="city"
-                                ref="city"
-                                classname="form-control"
-                                :class="{'form-control is-invalid': $v.city.$error,'form-control is-valid': !$v.city.$invalid}"
-                                placeholder="Ingresa tu ciudad"
-                                v-on:placechanged="getAddressData"
-                                types="(cities)">
+                                  v-model.trim="$v.city.$model"
+                                  id="city"
+                                  ref="city"
+                                  classname="form-control"
+                                  :class="{'form-control is-invalid': $v.city.$error,'form-control is-valid': !$v.city.$invalid}"
+                                  placeholder="Ingresa tu ciudad"
+                                  v-on:placechanged="getAddressData"
+                                  types="(cities)">
                                 </vue-google-autocomplete>
                                 <b-form-invalid-feedback v-if="!$v.city.required">
-                                Tu ubicación es necesaria
+                                  Tu ubicación es necesaria
                                 </b-form-invalid-feedback>
                             </div>
                             </b-col>
@@ -35,7 +34,7 @@
         </b-row>
         <br>
         <b-row>
-            <b-col sm="12" md="6">
+            <b-col sm="12" md="12">
                 <b-table responsive bordered :items="items" :fields="fields" head-variant="light"></b-table>
             </b-col>
         </b-row>
@@ -63,20 +62,12 @@ export default {
           },
         ],
         items: [
-          { contacto: 'Min Salud Línea nacional ', telefono: '01 8000 95 55 90' },
-          { contacto: 'Min Salud Bogotá', telefono: '330 50 41' },
-          { contacto: 'Min Salud celular', telefono: '192' }
+          { contacto: 'Min Salud Línea nacional ', telefono: '01 8000 95 55 90'},
+          { contacto: 'Min Salud Bogotá', telefono: '330 50 41'},
+          { contacto: 'Min Salud celular', telefono: '192'}
         ]
         }
   },
-  mounted(){
-    // this.fetchPhoneNumbers().then((data) => {
-    //   console.log('hendrix says  ' + JSON.stringify(data))
-
-    // }).catch((e) => {
-    //   console.log('error ' + e)
-    // })  
-  }, 
   components:{
     VueGoogleAutocomplete
   }, 
@@ -91,10 +82,6 @@ export default {
         console.log(addressData)
         console.log(id)
         if(addressData.locality != null){
-        //   this.city = addressData.locality
-        //  
-        // }
-        // else{
           this.city = addressData.administrative_area_level_1
            this.fetchPhoneNumbers(this.city)
         }             
@@ -115,8 +102,6 @@ export default {
           querySnapshot.forEach((doc) => {            
               // let documentId =  doc.id
               let commentRecord = doc.data()
-              // console.log(documentId)
-              // console.log(commentRecord)
               let phones = commentRecord.phone_numbers
 
               if(phones!=null && phones.length > 0){
@@ -129,11 +114,8 @@ export default {
               })
               }
           })
-        //   resolve({'hey': 'joe'})
-        // }).catch((e) => {
-        //   console.log(e)
-        //   reject(null)
-        // })
+      }).catch((e) => {
+        console.log(e)
       })
     }
   }
