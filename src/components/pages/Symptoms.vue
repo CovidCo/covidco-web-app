@@ -6,7 +6,7 @@
           <div class="col-12 col-md-3 col-lg-3 card-margin">        
             <button class="btn btn-outline-primary btn-width disabled">
               <img src="../../assets/img/fever.png" class="card-img-top" alt="...">
-              <p>Fiebre</p>                        
+              <p>Fiebre</p> 
             </button>
           </div> 
 
@@ -20,31 +20,37 @@
           <div class="col-12 col-md-3 col-lg-3 card-margin">        
             <button class="btn btn-outline-primary btn-width disabled">
               <img src="../../assets/img/sore-throat.png" class="card-img-top" alt="...">
-              <p>Dolor de garganta</p>                        
+              <p>Dolor de garganta</p>
             </button>
           </div> 
 
           <div class="col-12 col-md-3 col-lg-3 card-margin">        
             <button class="btn btn-outline-primary btn-width disabled">
               <img src="../../assets/img/tired.png" class="card-img-top" alt="...">
-              <p>Cansancio o malestar</p>                        
+              <p>Cansancio o malestar</p>
             </button>
           </div> 
 
           <div class="col-12 col-md-3 col-lg-3 card-margin">        
             <button class="btn btn-outline-primary btn-width disabled">
               <img src="../../assets/img/breath.png" class="card-img-top" alt="...">
-              <p>Dificultad para respirar</p>                        
+              <p>Dificultad para respirar</p> 
             </button>
           </div> 
 
           <div class="col-12 col-md-3 col-lg-3 card-margin">        
             <button class="btn btn-outline-primary btn-width disabled">
               <img src="../../assets/img/diarrhea.png" class="card-img-top" alt="...">
-              <p>Diarrea</p>                        
+              <p>Diarrea</p>
             </button>
           </div> 
                                   
+          <div class="col-12 col-md-3 col-lg-3 card-margin">        
+            <button class="btn btn-outline-primary btn-width disabled">
+              <img src="../../assets/img/nose.png" class="card-img-top" alt="...">
+              <p>Perdida del olfato</p>  
+            </button>
+          </div> 
         </div>
   </b-container>
 </template>

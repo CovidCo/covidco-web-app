@@ -11,7 +11,7 @@
                 <div class="col-12 col-md-12 col-lg-12  card-margin">        
                   <button class="btn btn-warning btn-width" @click.prevent="visitPage('diagnosis')">
                     <img class="card-img-top-lg12" src="../assets/img/fever.png" alt="Card image cap">
-                    <p> <strong>¡No me siento bien!, ¿Que debo hacer?</strong>  </p>                        
+                    <p> <strong>¡No me siento bien!, ¿Qué debo hacer?</strong>  </p>                        
                   </button>
                 </div>   
 
