@@ -356,7 +356,7 @@ export default {
     },
     document: {
       required,
-      minLength: minLength(5)
+      minLength: minLength(8)
     },
     selectedOptionRegime:{
       required
