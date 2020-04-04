@@ -36,6 +36,16 @@
                     <input type="checkbox" class="form-check-input" id="diarrhea" v-model="diarrhea">
                     <label class="form-check-label" for="diarrhea">Diarrea</label>
                   </div>
+                  <div class="form-group">
+                    <label for="name"> <small id="nameHelp" class="form-text text-muted">Otros síntomas?</small></label>                    
+                    <b-form-textarea
+                      id="extra-symptoms"
+                      v-model="extraSymptoms"
+                      placeholder="Describa sus síntomas"
+                      rows="3"
+                      max-rows="5"
+                    ></b-form-textarea>                   
+                  </div>                 
                   <br/>
                   <i>Esta lista no incluye todo. Consulte a su proveedor de atención médica ante cualquier otro síntoma grave o que le preocupe</i>
               </div>
@@ -76,6 +86,93 @@
                       Tu nombre es necesario 
                     </b-form-invalid-feedback>
                   </div>
+                  <b-row>
+                    <b-col sm="12" md="5" lg="5">                                                                   
+                      <b-form-group>
+                        <label for="typeDocuments"><small id="typeDocumentHelp" class="form-text text-muted">Tipo Doc.</small></label>                              
+                        <b-form-select 
+                          id="typeDocuments"                                  
+                          :plain="true"                                                            
+                          :class=" {'is-invalid': $v.selectedOptionDoc.$error,'is-valid': !$v.selectedOptionDoc.$invalid}" class="form-control"
+                          v-model.trim="$v.selectedOptionDoc.$model">
+                           <!-- v-model="selectedOptionDoc" -->
+                            <option 
+                              v-for="doc in typeDocs" 
+                              v-bind:value="doc"
+                              v-bind:key="doc">
+                                {{ doc }}
+                            </option>
+                        </b-form-select> 
+                        <b-form-invalid-feedback v-if="!$v.selectedOptionDoc.required">
+                          El tipo  de documento es necesario 
+                        </b-form-invalid-feedback>                           
+                      </b-form-group>
+                    </b-col>
+                    <b-col sm="12" md="7" lg="7">
+                      <div class="form-group">
+                        <label for="document"> <small id="documentHelp" class="form-text text-muted">Num. documento</small></label>
+                        <input type="text" id="document" placeholder="Número de documento" v-model.trim="$v.document.$model"
+                          :class=" {'is-invalid': $v.document.$error,'is-valid': !$v.document.$invalid}" class="form-control">
+                        <b-form-invalid-feedback v-if="!$v.document.required">
+                          El número de documento es necesario 
+                        </b-form-invalid-feedback>
+                      </div>
+                    </b-col>
+                  </b-row>
+                  <b-row>
+                    <b-col sm="12" md="5" lg="5">                                                                   
+                      <b-form-group>
+                        <label for="regime"><small id="regimeHelp" class="form-text text-muted">Régimen:</small></label>                              
+                        <b-form-select 
+                          id="regime"                                  
+                          :plain="true"                                                            
+                          :class=" {'is-invalid': $v.selectedOptionRegime.$error,'is-valid': !$v.selectedOptionRegime.$invalid}" class="form-control"
+                          v-model.trim="$v.selectedOptionRegime.$model">
+                           <!-- v-model="selectedOptionDoc" -->
+                            <option 
+                              v-for="element in regime" 
+                              v-bind:value="element"
+                              v-bind:key="element">
+                                {{ element }}
+                            </option>
+                        </b-form-select> 
+                        <b-form-invalid-feedback v-if="!$v.selectedOptionRegime.required">
+                          El régimen es obligatorio.
+                        </b-form-invalid-feedback>                           
+                      </b-form-group>
+                    </b-col>
+                    <b-col sm="12" md="5" lg="5">                                                                   
+                      <b-form-group>
+                        <label for="joinedTo"><small id="joinedToHelp" class="form-text text-muted">Afiliado a:</small></label>                              
+                        <b-form-select 
+                          id="joinedTo"                                  
+                          :plain="true"                                                            
+                          :class=" {'is-invalid': $v.selectedOptionJoinedTo.$error,'is-valid': !$v.selectedOptionJoinedTo.$invalid}" class="form-control"
+                          v-model.trim="$v.selectedOptionJoinedTo.$model"
+                          @change="onChangeList($event)" >                           
+                            <option 
+                              v-for="element in joinedTo" 
+                              v-bind:value="element"
+                              v-bind:key="element">
+                                {{ element }}
+                            </option>
+                        </b-form-select> 
+                        <b-form-invalid-feedback v-if="!$v.selectedOptionJoinedTo.required">
+                          La entidad a la que se encuentra afiliado es obligatoria.
+                        </b-form-invalid-feedback>                           
+                      </b-form-group>
+                    </b-col>
+                    <b-col sm="12" md="12" lg="12" v-if="flagJoinedToOther">
+                      <div class="form-group">
+                        <label for="other"> <small id="otherHelp" class="form-text text-muted">Cuál?</small></label>
+                        <input type="text" id="other" placeholder="Entidad a la que estás afiliado" v-model="other" class="form-control">
+                        <!-- <b-form-invalid-feedback v-if="!$v.name.required">
+                          Tu nombre es necesario 
+                        </b-form-invalid-feedback> -->
+                      </div>
+                    </b-col>
+                   
+                  </b-row>
                   <b-row>
                     <b-col sm="4" md="4" lg="6">
                       <div class="form-group">
@@ -198,10 +295,42 @@ export default {
       breathing:  false, 
       fatigue: false, 
       diarrhea: false,
+      extraSymptoms: '',
       travel: false, 
       health_worker: false, 
       personal_contact: false,
       name: '', 
+      typeDocs: [
+        'Carnet extranjería',
+        'Cédula',        
+        'Pasaporte',
+        'Registro civil',
+        'Tarjeta de identidad'
+      ],      
+      selectedOptionDoc:'',
+      document:'',
+      regime:[
+        'Contributivo', 
+        'Subsidiado'
+      ],
+      joinedTo: [
+        'AISEC',
+        'Asmet',
+        'Cosmitet',
+        'Ejercito',
+        'Emmsanar',
+        'Mayamas',
+        'Medimas',
+        'Nueva EPS',
+        'Policia',
+        'Sanitas',
+        'Servicio Occidental de Salud S.O.S',
+        'Sura',
+        'OTRO'
+      ],
+      other:'',//if joined to another entity
+      selectedOptionJoinedTo: '',
+      selectedOptionRegime: '',      
       phone_number:  null, 
       city: null, 
       age: null,
@@ -210,7 +339,8 @@ export default {
       neighborhood: '', 
       terms_and_conditions: false, 
       pain: false, 
-      place_id: null
+      place_id: null,
+      flagJoinedToOther: false,
     }
   }, 
   components:{
@@ -221,16 +351,30 @@ export default {
       required,
       minLength: minLength(4)
     },
+    selectedOptionDoc: {
+      required,      
+    },
+    document: {
+      required,
+      minLength: minLength(5)
+    },
+    selectedOptionRegime:{
+      required
+    },
+    selectedOptionJoinedTo:{
+      required
+    },
     age: {
       required, 
-      between: between(20, 120)
+      between: between(18, 120)
     }, 
     gender: {
       required 
     }, 
     phone_number: {
       required,
-      phoneNumber
+      phoneNumber,
+      minLength: minLength(6)
     }, 
     city:{
       required
@@ -261,20 +405,28 @@ export default {
             "neighborhood": this.neighborhood, 
             "terms_and_conditions": this.terms_and_conditions,
             "pain": this.pain, 
-            "place_id": this.place_id
+            "place_id": this.place_id,
+            "extra_symptoms": this.extraSymptoms,
+            "document_type":this.selectedOptionDoc,
+            "document":this.document,
+            "regime": this.selectedOptionRegime,
+            "joined_to": this.selectedOptionJoinedTo,
+            "joined_to_other":this.other,//if joined to another entity
+            
           }
         }
-        try{
-          let response = await this.$https.post('/cases', payload)
-          if (response.status == 200){
-            this.$noty.success("Solicitud recibida, pronto un especialista te contactará!")
-            this.$router.push('/main')
-          } else { 
-              this.$noty.warning("No hemos podido registrar tu solicitud")
-          }
-        } catch(e){
-          this.$noty.warning("No hemos podido registrar tu solicitud")
-        }
+        console.log(payload)
+        // try{
+        //   let response = await this.$https.post('/cases', payload)
+        //   if (response.status == 200){
+        //     this.$noty.success("Solicitud recibida, pronto un especialista te contactará!")
+        //     this.$router.push('/main')
+        //   } else { 
+        //       this.$noty.warning("No hemos podido registrar tu solicitud")
+        //   }
+        // } catch(e){
+        //   this.$noty.warning("No hemos podido registrar tu solicitud")
+        // }
       }
     },
     openInBlankPage: function(page){
@@ -293,6 +445,13 @@ export default {
         }             
         this.place_id = placeResultData.place_id 
     },
+    onChangeList(list){
+      console.log(list)
+        this.flagJoinedToOther = false
+      if(list == 'OTRO')
+        this.flagJoinedToOther=true
+      
+    }
   }
 }
 </script>
