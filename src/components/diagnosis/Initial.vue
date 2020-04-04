@@ -120,7 +120,7 @@
                     </b-col>
                   </b-row>
                   <b-row>
-                    <b-col sm="12" md="5" lg="5">                                                                   
+                    <b-col sm="12" md="6" lg="6">                                                                   
                       <b-form-group>
                         <label for="regime"><small id="regimeHelp" class="form-text text-muted">Régimen:</small></label>                              
                         <b-form-select 
@@ -141,7 +141,7 @@
                         </b-form-invalid-feedback>                           
                       </b-form-group>
                     </b-col>
-                    <b-col sm="12" md="5" lg="5">                                                                   
+                    <b-col sm="12" md="6" lg="6">                                                                   
                       <b-form-group>
                         <label for="joinedTo"><small id="joinedToHelp" class="form-text text-muted">Afiliado a:</small></label>                              
                         <b-form-select 
